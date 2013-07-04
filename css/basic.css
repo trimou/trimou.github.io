@@ -26,3 +26,8 @@ a:hover {
 .container h1 small {
     font-weight: bold;
 }
+
+table td {
+    padding: 4px;
+    padding-left: 10px;
+}
