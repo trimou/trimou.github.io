@@ -31,3 +31,9 @@ table td {
     padding: 4px;
     padding-left: 10px;
 }
+
+table td.branch {
+    background-color: #d5d9de;
+    border-top: 1px solid silver;
+    border-left: 1px solid silver;
+}
