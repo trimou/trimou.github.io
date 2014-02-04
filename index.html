@@ -4,7 +4,7 @@
         <title>Trimou - Trim Your Mustache Templates!</title>
         <meta charset="utf-8">
         <meta name="description" content="Simple to use and easy to extend Mustache templating engine implementation written in Java.">
-        <meta name="keywords" content="Java,Mustache,templates">
+        <meta name="keywords" content="Java,Mustache,templates,Handlebars,templating engine">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/basic.css" media="screen">
         <link rel="stylesheet" href="css/bootstrap.css" media="screen">
@@ -16,12 +16,14 @@
             <div class="row">
                 
                 <div class="page-header">
-                    <h1>Trimou <small>Trim your {{Mustache}} templates!</small></h1>
+                    <h1>Trimou</h1>
                 </div>
 
-                <p>Trimou is yet another <a href="https://github.com/mustache" target="_blank">Mustache</a> implementation written in Java. It’s goal is to provide a <strong>simple to use</strong> and
+                <p>Trimou is a <a href="https://github.com/mustache" target="_blank">Mustache</a> implementation written in Java. Since 1.5.0 there is a helper API inspired by <a href="http://handlebarsjs.com/" target="_blank">Handlebars</a>. The goal is to provide a <strong>simple to use</strong> and
                 <strong>easy to extend</strong> templating engine for any Java SE or Java EE application. So far there are five ready-to-use extensions which provide integration with
                 <a href="http://www.cdi-spec.org/" target="_blank">CDI</a>, Servlets, <a href="http://ocpsoft.org/prettytime/" target="_blank">PrettyTime</a>, <a href="http://code.google.com/p/htmlcompressor/" target="_blank">HtmlCompressor</a> and <a href="http://code.google.com/p/google-gson/">google-gson</a>.</p>
+                                
+                <p>Don't forget to check the <a href="https://github.com/trimou/trimou/tree/master/examples/ping" target="_blank">example web application <i class="icon-search"></i></a>.</p>
                                 
                 <h2>Licence</h2>
                 <p> Trimou is available under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
@@ -109,7 +111,6 @@
                 
                 <h2>Source code</h2>
                 <p>The source code is available at GitHub: <a href="https://github.com/trimou/trimou" target="_blank">https://github.com/trimou/trimou</a>.</p>
-                <p>Also check <a href="https://github.com/trimou/trimou/tree/master/examples/ping" target="_blank">the web application example</a>.</p>
        
                 <h2>Continuous integration</h2>
                 <p>
@@ -135,7 +136,7 @@
         
    <script src="http://code.jquery.com/jquery.js"></script>
    <script src="js/bootstrap.min.js"></script>
-   <script type="text/javascript">
+   <!--script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-41837896-1']);
         _gaq.push(['_trackPageview']);
@@ -144,7 +145,7 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-    </script>
+    </script-->
     <script>
         $("#old-release-table").hide();
         
