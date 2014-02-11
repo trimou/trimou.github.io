@@ -1,0 +1,144 @@
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 1em;
+    padding: 50px;
+    text-rendering: optimizelegibility;
+    /*width: 70%;*/
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+div.listingblock pre .tag .title {
+    color:white;
+}
+
+/*div#toc {
+    position: fixed;
+}*/
+
+/*div#content {
+    margin-left: 20%;
+}*/
+
+div.listingblock div.content {
+    background-color: #161616;
+    /*background-color: #F8F8F8;*/
+    /*background-color: #2f2f2f;*/
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: silver;
+    border-width: 4px;
+    font-family: Cousine, ​ "Liberation Mono", ​monospace;
+}
+
+div.listingblock div.content pre {
+    background-color: none;
+    font-size: 1.3em;
+}
+
+div.listingblock .title {
+    font-weight: bold;
+}
+
+h1,h2,h3,h4,h5 {
+    /*color: #404040;*/
+    color: #6CAE37;
+    font-family: Verdana, Georgia, ​​Helvetica, ​Arial, ​sans-serif;
+}
+
+h2,h3,h4,h5 {
+    margin-top: 1.6em;
+}
+
+h2 {
+    /*border-bottom: 1px dashed #6CAE37;*/
+}
+
+div.admonitionblock {
+    background-color: #f9f9f9;
+    border-radius: 4px 4px 4px 4px;
+    /*border-top: 1px dotted #4f9854;*/
+}
+
+div.admonitionblock .icon .title {
+    font-weight: bold;
+    /*text-transform: uppercase;*/
+    color: #404040;
+    border-right: 1px solid silver;
+    padding: 10px;
+}
+
+div.admonitionblock .content {
+    padding: 15px;
+}
+
+div.colist {
+    font-family: monospace;
+    font-size: 1.3em;
+}
+
+a, a:active, a:visited {
+    color: #6CAE37;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+p code, p tt, p tt, td.content tt {
+    background-color: #EFEFEF;
+    border: 1px solid #E2E2E2;
+    border-radius: 3px 3px 3px 3px;
+    color: #507e2a;
+    padding: 2px 3px 0;
+    white-space: nowrap;
+    font-size: 1.2em;
+}
+
+pre {
+    overflow: auto;
+}
+
+#content pre code {
+    background: none repeat scroll 0 0 #161616;
+    color: white;
+    /*background: none repeat scroll 0 0 #F8F8F8;*/
+}
+
+#toc ol {
+    list-style: none;
+}
+
+table.tableblock {
+    border-bottom: 3px solid #6CAE37;
+    border-collapse: separate;
+    /*border-radius: 4px 4px 4px 4px;*/
+    border-spacing: 1px;
+    border-top: 3px solid #6CAE37;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+table.tableblock caption {
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 0.2em;
+    padding-top: 0.5em;
+    text-align: left;
+}
+
+table.tableblock tr {
+    background: none repeat scroll 0 0 #F9F9F9;
+}
+
+table.tableblock td {
+    border-top: 1px solid silver;
+    /*border-left: 1px solid #6CAE37;*/
+    padding-left: 4px;
+}
