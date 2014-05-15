@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <title>Trimou Documentation - 1.5.2.Final</title>
+    <title>Trimou Documentation - 1.5.3.Final</title>
     
     
     <link rel="stylesheet" href="./style.css">
@@ -24,7 +24,7 @@
     <div id="header">
       
       
-      <h1>Trimou Documentation - 1.5.2.Final</h1>
+      <h1>Trimou Documentation - 1.5.3.Final</h1>
       
       
       
@@ -1209,6 +1209,17 @@ String output = mustache.render(null);</code></pre>
       
     </tr>
     
+    <tr>
+      
+      <td class="tableblock halign-left valign-top"><p class="tableblock">REUSE_LINE_SEPARATOR_SEGMENTS
+<strong>org.trimou.engine.config.reuseLineSeparatorSegments</strong></p></td>
+      
+      <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+      
+      <td class="tableblock halign-left valign-top"><p class="tableblock">If set to <code>true</code> the line separators will be reused within template to conserve memory.</p></td>
+      
+    </tr>
+    
   </tbody>
   
   
@@ -1439,13 +1450,52 @@ String output = mustache.render(ImmutableMap.&lt;String, Object&gt; of("now", ne
   <p><code>org.trimou.handlebars.Helper</code> API is inspired by Handlebars but it&#8217;s not 100% compatible. Mainly it does not define "inverse" section, so for example <code>if</code> helper doesn&#8217;t support <code>else</code> block. On the other hand any helper is able to validate the tag definition (see <code>Helper.validate()</code>) and fail fast if there&#8217;s invalid number of arguments etc.</p>
 </div><div class="paragraph">  
   <p>A helper may be registered via <code>MustacheEngineBuilder.registerHelper()</code> or <code>MustacheEngineBuilder.registerHelpers()</code> methods. Note that each helper must be registered with a unique name. If there are more helpers registered with the same name an <code>IllegalArgumentException</code> is thrown during engine build. There are some <a href="#helpers">built-in helpers</a> registered automatically.</p>
-</div><div class="paragraph">  
-  <p>The main advantage of helpers is the ability to consume multiple parameters and optional hash map. Suppose we have a resource bundle <code>messages.properties</code> with the following key/value pair: <code>my.message.key=My name is %s!</code> We can use a <code>org.trimou.handlebars.i18n.ResourceBundleHelper</code> to render the message:</p>
+</div><div class="admonitionblock warning">
+  <table>
+    <tr>
+      <td class="icon">
+        
+        <div class="title">Warning</div>
+        
+      </td>
+      <td class="content">
+        
+        The number of registered helpers should not affect the engine performance (unlike the number of registered resolvers). However, intensive use of helpers may result in significant performance decrease.
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="paragraph">  
+  <p>The main advantage of helpers is the ability to consume multiple parameters and optional hash map. Suppose we have the following resource bundle file:</p>
 </div><div class="listingblock">
+  <div class="title">messages.properties</div>
+  <div class="content monospaced">
+    
+    <pre>my.message.key=My name is %s!
+hello.key.messageformat=Hello {0}!</pre>
+    
+  </div>
+</div>
+<div class="paragraph">  
+  <p>We can use a <code>org.trimou.handlebars.i18n.ResourceBundleHelper</code> to render messages:</p>
+</div><div class="listingblock">
+  <div class="title">Register the helper</div>
+  <div class="content monospaced">
+    
+    <pre class="highlight"><code class="java">MustacheEngine engine = MustacheEngineBuilder
+                           .newBuilder()
+                           .registerHelper("msg", new ResourceBundleHelper("messages")) <b>&lt;1&gt;</b>
+                           .build();
+...</code></pre>
+    
+  </div>
+</div>
+<div class="listingblock">
   <div class="title">Template</div>
   <div class="content monospaced">
     
-    <pre>{{msg "my.message.key" "Martin" baseName="messages" format="printf"}}</pre>
+    <pre>{{msg "my.message.key" "Martin"}}
+{{msg "hello.key.messageformat" "world" format="message"}}</pre>
     
   </div>
 </div>
@@ -1453,28 +1503,14 @@ String output = mustache.render(ImmutableMap.&lt;String, Object&gt; of("now", ne
   <div class="title">Expected output</div>
   <div class="content monospaced">
     
-    <pre>My name is Martin!</pre>
+    <pre>My name is Martin!
+Hello world!</pre>
     
   </div>
 </div>
 <div class="paragraph">  
   <p>Trimou provides other useful helpers which are not automatically registered: <code>org.trimou.handlebars.NumberIsEvenHelper</code>, <code>org.trimou.handlebars.NumberIsOddHelper</code> and <code>org.trimou.handlebars.i18n.DateTimeFormatHelper</code>, <code>org.trimou.handlebars.SetHelper</code>, <code>org.trimou.handlebars.IncludeHelper</code>. See javadoc for more info.</p>
-</div><div class="admonitionblock note">
-  <table>
-    <tr>
-      <td class="icon">
-        
-        <div class="title">Note</div>
-        
-      </td>
-      <td class="content">
-        
-        The number of registered helpers should not affect the engine performance (unlike the number of registered resolvers).
-      </td>
-    </tr>
-  </table>
 </div>
-
 </div><div class="sect2">
   <h3 id="missingvaluehandler">4.7. MissingValueHandler</h3>
 <div class="paragraph">  
@@ -1878,7 +1914,7 @@ Type of the second phone number: mobile</pre>
     <div id="footer">
       <div id="footer-text">
         
-        Last updated 2014-03-29 14:20:06 CET
+        Last updated 2014-05-14 20:53:42 CEST
       </div>
     </div>
     
