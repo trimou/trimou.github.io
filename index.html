@@ -31,7 +31,8 @@
                 <p> Trimou is available under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
        
                 <h2>Latest versions</h2>
-                <table id="latest-release-table" style="width:50%;">
+                <p>A list of upcoming versions is on <a href="https://github.com/trimou/trimou/wiki/Roadmap" target="_blank"> the Road Map wiki page</a>.</p>
+                <table id="latest-release-table" style="width:50%;margin-bottom:15px;margin-top:15px;">
                     <tr>
                         <td colspan="3" class="branch"><strong>1.6.x</strong></td>
                     </tr>
@@ -42,11 +43,10 @@
                     </tr>
                 </table>
                 
-                <p>A list of upcoming versions is on <a href="https://github.com/trimou/trimou/wiki/Roadmap" target="_blank"> the Road Map wiki page</a>.</p>
+                <a id="a-hide-old-releases">Hide older releases...</a>
+                <a id="a-show-old-releases">Show older releases...</a>
                 
-                <button id="button-show-old-releases">Older releases...</button>
-                
-                <table id="old-release-table" style="width:50%;">
+                <table id="old-release-table" style="width:50%;margin-bottom:15px;">
                     <tr>
                         <td colspan="3" class="branch"><strong>1.5.x</strong></td>
                     </tr>
@@ -174,10 +174,18 @@
     </script>
     <script>
         $("#old-release-table").hide();
+        $("#a-hide-old-releases").hide();
         
-        $("#button-show-old-releases").click(function () {
-            $("#old-release-table").toggle();
-            $("#button-show-old-releases").toggle();
+        $("#a-show-old-releases").click(function () {
+            $("#old-release-table").show();
+            $("#a-show-old-releases").hide();
+            $("#a-hide-old-releases").show();
+        });
+        
+        $("#a-hide-old-releases").click(function () {
+            $("#old-release-table").hide();
+            $("#a-show-old-releases").show();
+            $("#a-hide-old-releases").hide();
         });
         </script>
    

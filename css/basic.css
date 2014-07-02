@@ -11,6 +11,7 @@ body {
     /*color: #404040;*/
     color: #6CAE37;
     font-family: Verdana, Georgia, ​​Helvetica, ​Arial, ​sans-serif;
+    border-bottom: 1px solid #eeeeee;
 }
 
 a, a:active, a:visited {
