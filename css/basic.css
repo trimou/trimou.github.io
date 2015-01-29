@@ -1,31 +1,18 @@
 body {
-    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-family: sans-serif, Arial;
     text-rendering: optimizelegibility;
 }
 
-.container h1 {
-    font-size: 5em;
+h1, h2, h3, h4 {
+    color: #6CAE37;
 }
 
-.container h1, .container h2, .container h3, .container h4 {
-    /*color: #404040;*/
+a {
     color: #6CAE37;
-    font-family: Verdana, Georgia, ​​Helvetica, ​Arial, ​sans-serif;
-    border-bottom: 1px solid #eeeeee;
-}
-
-a, a:active, a:visited {
-    color: #6CAE37;
-    text-decoration: underline;
 }
 
 a:hover {
     text-decoration: none;
-}
-
-
-.container h1 small {
-    font-weight: bold;
 }
 
 table td {
@@ -37,4 +24,70 @@ table td.branch {
     background-color: #d5d9de;
     border-top: 1px solid silver;
     border-left: 1px solid silver;
+}
+
+div.badges {
+    margin-bottom: 15px;
+}
+
+.navbar-default {
+    background-color: #6cae37;
+    border-color: #e7e7e7;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: silver;
+}
+
+.nav-tabs > li > a {
+    font-weight: bold;
+}
+
+.jumbotron p {
+    font-weight: normal;
+}
+
+.jumbotron ul li {
+    font-size: 16px;
+    padding-bottom: 7px;
+}
+
+.tab-pane p {
+    padding: 15px 0px 0px 0px;
+}
+
+pre {
+    font-family: monospace;
+    font-size: 16px;
+    color: white;
+    background-color: #161616;
+    padding: 15px;
+}
+
+
+p {
+    margin: 0 0 10px;
+}
+
+li code, p code, p tt, p tt, td.content tt {
+    background-color: #efefef;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    padding: 2px 3px 0;
+    white-space: nowrap;
+    font-family: monospace;
+    color: black;
+}
+
+.footer {
+    text-align: right;
 }
