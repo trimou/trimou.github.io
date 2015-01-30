@@ -65,11 +65,9 @@ div.badges {
     padding: 15px 0px 0px 0px;
 }
 
-pre {
+pre code {
     font-family: monospace;
     font-size: 16px;
-    color: white;
-    background-color: #161616;
     padding: 15px;
 }
 
