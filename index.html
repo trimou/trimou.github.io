@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
         <link rel="stylesheet" href="css/sunburst.css" media="screen">
         <link rel="stylesheet" href="css/basic.css" media="screen">
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     </head>
     <body>
         
@@ -23,11 +24,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#" title="Trimou">{{! Trimou }}</a>
+                    <a class="navbar-brand" href="#" title="Trimou"><img alt="Brand" src="img/trimou-logo.png"></a>
                 </div>
                 <div id="menu" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Releases <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
@@ -64,6 +64,14 @@
                                 <li><a href="https://github.com/trimou/trimou/issues" target="_blank"><i class="fa fa-lg fa-bug"></i> Issue Tracker</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <div class="badges">
+                    <a href="https://travis-ci.org/trimou/trimou" target="_blank"><img src="https://api.travis-ci.org/trimou/trimou.png" /></a>
+                    <a href="http://search.maven.org/#search%7Cga%7C1%7Ctrimou-core">
+                        <img style="max-width:100%;" data-canonical-src="http://img.shields.io/maven-central/v/org.trimou/trimou-core.svg" alt="Maven Central" src="https://camo.githubusercontent.com/49b503692155883e63f750249d20e6e82aff6eb0/687474703a2f2f696d672e736869656c64732e696f2f6d6176656e2d63656e7472616c2f762f6f72672e7472696d6f752f7472696d6f752d636f72652e737667">
+                    </a>
+                </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -73,14 +81,8 @@
         
             <div class="row">
                 
-                <div class="badges">
-                    <a href="https://travis-ci.org/trimou/trimou" target="_blank"><img src="https://api.travis-ci.org/trimou/trimou.png" /></a>
-                    <a href="http://search.maven.org/#search%7Cga%7C1%7Ctrimou-core">
-                        <img style="max-width:100%;" data-canonical-src="http://img.shields.io/maven-central/v/org.trimou/trimou-core.svg" alt="Maven Central" src="https://camo.githubusercontent.com/49b503692155883e63f750249d20e6e82aff6eb0/687474703a2f2f696d672e736869656c64732e696f2f6d6176656e2d63656e7472616c2f762f6f72672e7472696d6f752f7472696d6f752d636f72652e737667">
-                    </a>
-                </div>
-                
                 <div class="jumbotron">
+                    <h1>Trim Your Mustache Templates!</h1>
                     <p>Trimou is a <a href="https://github.com/mustache" target="_blank">Mustache</a> templating engine implementation written in Java. Since version 1.5 a <strong>helpers API</strong> inspired by <a href="http://handlebarsjs.com/" target="_blank">Handlebars.js</a> is also included. The goal is to provide a <strong>simple to use</strong> and
                     <strong>easy to extend</strong> templating engine for any Java SE or Java EE application. Trimou is available under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
                 

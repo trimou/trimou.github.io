@@ -1,5 +1,5 @@
 body {
-    font-family: sans-serif, Arial;
+    font-family: 'Droid Sans', sans-serif;
     text-rendering: optimizelegibility;
 }
 
@@ -8,7 +8,7 @@ h1, h2, h3, h4 {
 }
 
 a {
-    color: #6CAE37;
+    color: #4a4a4a;
 }
 
 a:hover {
@@ -27,25 +27,32 @@ table td.branch {
 }
 
 div.badges {
-    margin-bottom: 15px;
+    padding: 15px;
+}
+
+.navbar-header {
 }
 
 .navbar-default {
-    background-color: #6cae37;
+    background-color: #efefef;
     border-color: #e7e7e7;
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: white;
+    color: #4a4a4a;
+    font-weight: normal;
+    font-size: 1.2em;
+    text-transform: uppercase;
 }
 
 .navbar-default .navbar-brand {
     color: white;
     font-weight: bold;
+    padding: 3px 15px 3px 10px;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-    color: silver;
+    color: black;
 }
 
 .nav-tabs > li > a {
@@ -88,4 +95,13 @@ li code, p code, p tt, p tt, td.content tt {
 
 .footer {
     text-align: right;
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+    background-color: #6cae37;
+    color: white;
+}
+
+.nav-tabs > li > a {
+    text-transform: uppercase;
 }
