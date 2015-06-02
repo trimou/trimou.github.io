@@ -42,7 +42,7 @@ div.badges {
     color: #4a4a4a;
     font-weight: normal;
     font-size: 1.2em;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .navbar-default .navbar-brand {

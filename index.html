@@ -39,7 +39,8 @@
                          <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Documentation <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="doc/latest.html" target="_blank">Latest (1.7.3.Final)</a></li>
+                                <li><a href="doc/latest.html" target="_blank">Latest (1.8.0.Final)</a></li>
+                                <li><a href="doc/1.7.3.Final/trimou-doc.html" target="_blank">1.7.3.Final</a></li>
                                 <li><a href="doc/1.6.2.Final/trimou-doc.html" target="_blank">1.6.2.Final</a></li>
                                 <li><a href="doc/1.5.3.Final/trimou-doc.html" target="_blank">1.5.3.Final</a></li>
                             </ul>
@@ -81,23 +82,38 @@
         
             <div class="row">
                 
-                <div class="jumbotron">
-                    <h1>Trim Your Mustache Templates!</h1>
-                    <p>Trimou is a <a href="https://github.com/mustache" target="_blank">Mustache</a> templating engine implementation written in Java. Since version 1.5 a <strong>helpers API</strong> inspired by <a href="http://handlebarsjs.com/" target="_blank">Handlebars.js</a> is also included. The goal is to provide a <strong>simple to use</strong> and
-                    <strong>easy to extend</strong> templating engine for any Java SE or Java EE application. Trimou is available under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+                <div class="col-md-8">
                 
-                    <p>The most notable advanced features include:</p>
-                    <ul>
-                        <li>Template caching</li>
-                        <li>Template inheritance</li>
-                        <li>Helpers API (inspired by Handlebars.js)</li>
-                        <li>Many extension points (template locators, resolvers, text support, etc.)</li>
-                        <li>Ready-to-use extensions out of the box (CDI, Servlets, PrettyTime, Dropwizard, etc.)</li>
-                    </ul>
+                    <div class="jumbotron">
+
+                        <h1>Trim Your Templates!</h1>
                     
+                        <p>Trimou is a <a href="https://github.com/mustache" target="_blank">Mustache</a> templating engine implementation written in Java. <strong>Helper API</strong> inspired by <a href="http://handlebarsjs.com/" target="_blank">Handlebars.js</a> is also included. The goal is to provide a <strong>simple to use</strong> and
+                        <strong>easy to extend</strong> templating engine for any Java SE or Java EE application. Trimou is available under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
+                    
+                        <p>The most notable advanced features include:</p>
+                        <ul>
+                            <li>Template caching</li>
+                            <li>Template inheritance</li>
+                            <li>Helper API (inspired by Handlebars.js)</li>
+                            <li>Many extension points (template locators, resolvers, text support, etc.)</li>
+                            <li>Ready-to-use extensions out of the box (CDI, Servlets, PrettyTime, Dropwizard, etc.)</li>
+                        </ul>
+                    
+                    </div>
+                
                 </div>
                 
-                <h2>Get started</h2>
+                <div class="col-md-4">
+                    <a class="twitter-timeline" href="https://twitter.com/TrimouTemplates" data-widget-id="605738322074476544">Tweets by @TrimouTemplates</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </div>
+                
+            </div>
+                
+            <div class="row">
+                
+                <h2>Get started!</h2>
                 
                 <div role="tabpanel">
 
@@ -117,7 +133,7 @@
                             <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.trimou&lt;/groupId&gt;
   &lt;artifactId&gt;trimou-core&lt;/artifactId&gt;
-  &lt;version&gt;1.7.3.Final&lt;/version&gt;
+  &lt;version&gt;1.8.0.Final&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
                     </div>
                     
@@ -203,20 +219,18 @@ Hello world!</code></pre>
                         <p>Feel free to create <a href="http://trimou.org/doc/latest.html#custom_helpers" target="_blank">your own helper</a>!</p>
                     </div>
                     
-       
-
-                  </div>
+                    </div>
 
                 </div>
                 
             </div>
-            
+
             <div class="row footer">
                 <hr/>
-                <div>
+                <!--div>
                 <a href="https://twitter.com/TrimouTemplates" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @TrimouTemplates</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                </div>
+                </div-->
                 &copy; 2015 Trimou team
             </div>
         </div>
