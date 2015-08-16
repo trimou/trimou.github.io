@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <title>Trimou Documentation - 1.8.0.Final</title>
+    <title>Trimou Documentation - 1.8.1.Final</title>
     
     
     <link rel="stylesheet" href="./style.css">
@@ -24,7 +24,7 @@
     <div id="header">
       
       
-      <h1>Trimou Documentation - 1.8.0.Final</h1>
+      <h1>Trimou Documentation - 1.8.1.Final</h1>
       
       
       
@@ -164,6 +164,8 @@
         <ol>
           <li><a href="#_mapbackedcomputingcachefactory">5.8.1. MapBackedComputingCacheFactory</a></li>
           <li><a href="#_timeformathelper">5.8.2. TimeFormatHelper</a></li>
+          <li><a href="#_simple_helpers">5.8.3. Simple helpers</a></li>
+          <li><a href="#_simple_lambdas">5.8.4. Simple lambdas</a></li>
         </ol>
       </li>
     </ol>
@@ -659,8 +661,23 @@
     
   </div>
 </div>
+<div class="admonitionblock tip">
+  <table>
+    <tr>
+      <td class="icon">
+        
+        <div class="title">Tip</div>
+        
+      </td>
+      <td class="content">
+        
+        If you&#8217;re using Java 8 and want to create a simple lambda utilizing functional interfaces, try <code>SimpleLambdas</code> from <a href="#jdk8">JDK 8</a> extension.
+      </td>
+    </tr>
+  </table>
+</div>
 <div class="paragraph">  
-  <p>However this might be a little bit more useful:</p>
+  <p>Alternatively, you can use predefined abstract classes like <code>org.trimou.lambda.InputProcessingLambda</code>:</p>
 </div><div class="listingblock">
   
   <div class="content monospaced">
@@ -1932,9 +1949,9 @@ String output = mustache.render(ImmutableMap.&lt;String, Object&gt; of("now", ne
 </div><div class="sect2">
   <h3 id="custom_helpers">4.6. Helper</h3>
 <div class="paragraph">  
-  <p><code>org.trimou.handlebars.Helper</code> API is inspired by Handlebars but it&#8217;s not 100% compatible. Mainly it does not define "inverse" section, so for example <code>if</code> helper doesn&#8217;t support <code>else</code> block. On the other hand any helper is able to validate the tag definition (see <code>Helper.validate()</code>) and fail fast if there&#8217;s invalid number of arguments etc.</p>
+  <p><code>org.trimou.handlebars.Helper</code> API is inspired by Handlebars but it&#8217;s not 100% compatible. Mainly, it does not define "inverse" section, so for example the built-in <code>if</code> helper doesn&#8217;t support <code>else</code> block. On the other hand any helper is able to validate the tag definition (see <code>Helper.validate()</code>) and fail fast if there&#8217;s invalid number of arguments etc.</p>
 </div><div class="paragraph">  
-  <p>A helper may be registered via <code>MustacheEngineBuilder.registerHelper()</code> or <code>MustacheEngineBuilder.registerHelpers()</code> methods. Note that each helper must be registered with a unique name. If there are more helpers registered with the same name an <code>IllegalArgumentException</code> is thrown during engine build. There are some <a href="#helpers">built-in helpers</a> registered automatically.</p>
+  <p>A helper may be registered via <code>MustacheEngineBuilder.registerHelper()</code> or <code>MustacheEngineBuilder.registerHelpers()</code> methods. Note that each helper must be registered with a unique name. If there are more helpers registered with the same name an <code>IllegalArgumentException</code> is thrown during engine build. There is a special method <code>MustacheEngineBuilder.registerHelpers(Map&lt;String, Helper&gt;, boolean)</code> which allows to overwrite the existing helper instance (e.g. to define a custom <code>if</code> helper). Some <a href="#helpers">built-in helpers</a> are registered automatically.</p>
 </div><div class="admonitionblock warning">
   <table>
     <tr>
@@ -1952,7 +1969,22 @@ String output = mustache.render(ImmutableMap.&lt;String, Object&gt; of("now", ne
 </div>
 <div class="paragraph">  
   <p>The main advantage of helpers is the ability to consume multiple parameters and optional hash map. Check out <code>org.trimou.handlebars.Options</code> and the source of built-in helpers to see what helpers can do.</p>
+</div><div class="admonitionblock tip">
+  <table>
+    <tr>
+      <td class="icon">
+        
+        <div class="title">Tip</div>
+        
+      </td>
+      <td class="content">
+        
+        If you&#8217;re using Java 8 and want to register a simple helper utilizing functional interfaces, try <code>SimpleHelpers</code> from <a href="#jdk8">JDK 8</a> extension.
+      </td>
+    </tr>
+  </table>
 </div>
+
 </div><div class="sect2">
   <h3 id="missingvaluehandler">4.7. MissingValueHandler</h3>
 <div class="paragraph">  
@@ -2410,7 +2442,7 @@ Type of the second phone number: mobile</pre>
 </div><div class="sect2">
   <h3 id="jdk8">5.8. JDK 8</h3>
 <div class="paragraph">  
-  <p>Trimou requires Java 7. However, there are some interesting parts in JDK8. Therefore we have a special extension for JDK8 users.</p>
+  <p>Trimou requires Java 7. However, there is a lot of interesting stuff in JDK8. Therefore we have a special extension for JDK8 users.</p>
 </div><div class="sect3">
   <h4 id="_mapbackedcomputingcachefactory">5.8.1. MapBackedComputingCacheFactory</h4>
 <div class="paragraph">  
@@ -2420,7 +2452,43 @@ Type of the second phone number: mobile</pre>
   <h4 id="_timeformathelper">5.8.2. TimeFormatHelper</h4>
 <div class="paragraph">  
   <p>An alternative to <code>DateTimeFormatHelper</code>  which makes use of java.time package in JDK 8 (JSR-310). It supports new temporal types and should also be less resource-intensive.</p>
-</div><hr>
+</div>
+</div><div class="sect3">
+  <h4 id="_simple_helpers">5.8.3. Simple helpers</h4>
+<div class="paragraph">  
+  <p><code>org.trimou.jdk8.handlebars.SimpleHelpers</code> utility class and its builder allow to create simple helpers using JDK8 funcional interfaces. It&#8217;s even possible to validate the helper definition and provide configuration keys.</p>
+</div><div class="listingblock">
+  
+  <div class="content monospaced">
+    
+    <pre class="highlight"><code class="java">MustacheEngine engine = MustacheEngineBuilder
+        .newBuilder()
+        .registerHelper("toLowerCase", SimpleHelpers.execute(
+            (o, c) -&gt; {
+                o.append(o.getParameters().get(0).toString().toLowerCase());
+            })
+        ).build();</code></pre>
+    
+  </div>
+</div>
+
+</div><div class="sect3">
+  <h4 id="_simple_lambdas">5.8.4. Simple lambdas</h4>
+<div class="paragraph">  
+  <p><code>org.trimou.jdk8.lambda.SimpleLambdas</code> utility class and its builder allow to create simple lambdas using JDK8 funcional interfaces:</p>
+</div><div class="listingblock">
+  
+  <div class="content monospaced">
+    
+    <pre class="highlight"><code class="java">MustacheEngine engine = MustacheEngineBuilder
+        .newBuilder()
+        .addGlobalData("toLowerCase",
+            SimpleLambdas.invoke((t) -&gt; t.toLowerCase())
+        ).build();</code></pre>
+    
+  </div>
+</div>
+<hr>
 </div>
 </div>
   </div>
@@ -2430,7 +2498,7 @@ Type of the second phone number: mobile</pre>
     <div id="footer">
       <div id="footer-text">
         
-        Last updated 2015-06-01 10:23:24 CEST
+        Last updated 2015-08-14 16:40:33 CEST
       </div>
     </div>
     
