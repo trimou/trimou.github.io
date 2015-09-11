@@ -45,7 +45,7 @@ div.content {
 }
 
 .navbar-default a {
-    font-weight: bold;
+    font-weight: normal;
     font-size: 0.9em;
 }
 
@@ -129,4 +129,7 @@ li code, p code, p tt, p tt, td.content tt {
 .container .jumbotron, .container-fluid .jumbotron {
     background-color: #6cae37;
     color: white;
+}
+
+i.menu-icon {
 }

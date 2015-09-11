@@ -1,0 +1,152 @@
+body {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 1em;
+    padding: 50px;
+    text-rendering: optimizelegibility;
+    width: 60em;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+div.listingblock pre .tag .title {
+    color:white;
+}
+
+div.listingblock div.content {
+    background-color: #2a2a2b;
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: Cousine, ​ "Liberation Mono", ​monospace;
+}
+
+div.listingblock div.content pre {
+    background-color: none;
+    font-size: 1.3em;
+}
+
+div.listingblock .title {
+    font-weight: bold;
+}
+
+h1,h2,h3,h4,h5 {
+    /*color: #404040;*/
+    color: #6CAE37;
+    font-family: Verdana, Georgia, ​​Helvetica, ​Arial, ​sans-serif;
+}
+
+h2,h3,h4,h5 {
+    margin-top: 1.6em;
+}
+
+div.admonitionblock {
+    border-radius: 4px 4px 4px 4px;
+    margin-top: 15px;
+}
+
+div.admonitionblock .icon .title {
+    font-weight: bold;
+    color: #404040;
+    border-right: 1px solid silver;
+    padding: 10px;
+}
+
+div.warning {
+    border: 1px solid #F9A996;
+    background-color: #f2dede;
+}
+
+div.note {
+    border: 1px solid #7dcf7d;
+    background-color: #dff0d8;
+}
+
+div.tip {
+    border: 1px solid yellow;
+    background-color: #fcf8e3;
+}
+
+div.admonitionblock .content {
+    padding: 15px;
+}
+
+div.colist {
+    font-family: monospace;
+    font-size: 1.3em;
+}
+
+a, a:active, a:visited {
+    color: #6CAE37;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+p code, p tt, p tt, td.content tt {
+    background-color: #EFEFEF;
+    border: 1px solid #E2E2E2;
+    border-radius: 3px 3px 3px 3px;
+    /*color: #507e2a;*/
+    padding: 2px 3px 0;
+    white-space: nowrap;
+    font-size: 1.2em;
+}
+
+pre {
+    overflow: auto;
+}
+
+#content pre code {
+    background: none repeat scroll 0 0;
+    color: white;
+    /*background: none repeat scroll 0 0 #F8F8F8;*/
+}
+
+#toc ol {
+    list-style: none;
+}
+
+table.tableblock {
+    border-bottom: 3px solid #6CAE37;
+    border-collapse: collapse;
+    /*border-radius: 4px 4px 4px 4px;*/
+    border-spacing: 1px;
+    border-top: 3px solid #6CAE37;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+table.tableblock caption {
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 0.2em;
+    padding-top: 0.5em;
+    text-align: left;
+}
+
+table.tableblock tr {
+    background: none repeat scroll 0 0 #F9F9F9;
+    border-top: 1px solid #ececec;
+}
+
+table.tableblock td {
+    /*border-top: 1px solid silver;*/
+    /*border-left: 1px solid #6CAE37;*/
+    padding-left: 4px;
+    border: 1px solid silver;
+}
+
+table.tableblock td p {
+    margin: 8px;
+}
+
+table.tableblock thead tr th {
+    background-color: #6cae37;
+    color: white;
+    padding: 0px;
+    text-transform: uppercase;
+}
