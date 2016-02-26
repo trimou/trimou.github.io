@@ -14,7 +14,7 @@
     </head>
     <body>
         
-        <div id="navigation-menu" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div id="navigation-menu" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false" aria-controls="navbar">
@@ -47,7 +47,7 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="doc/latest.html" target="_blank">Latest (1.8.2.Final)</a></li>
+                                <li><a href="doc/latest.html" target="_blank">Latest (1.8.3.Final)</a></li>
                                 <li><a href="doc/1.7.3.Final/trimou-doc.html" target="_blank">1.7.3.Final</a></li>
                                 <li><a href="doc/1.6.2.Final/trimou-doc.html" target="_blank">1.6.2.Final</a></li>
                                 <li><a href="doc/1.5.3.Final/trimou-doc.html" target="_blank">1.5.3.Final</a></li>
@@ -87,15 +87,13 @@
                             </div>
                         </li>
                         <li>
-                            <div class="badges">
-                                <a href="http://search.maven.org/#search%7Cga%7C1%7Ctrimou-core" target="_blank">
-                                    <img style="max-width:100%;" src="http://img.shields.io/maven-central/v/org.trimou/trimou-core.svg" alt="Maven Central">
-                                </a>
-                            </div>
-                        </li>
-                        <li>
                            <div class="badges">
                                 <a href="https://gitter.im/trimou/trimou" target="_blank"><img style="max-width:100%;" src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a>
+                            </div>
+                        </li>
+                         <li>
+                           <div class="badges">
+                                <a href="https://twitter.com/trimoutemplates" target="_blank"><img style="max-width:100%;" src="https://img.shields.io/twitter/follow/trimoutemplates.svg?style=plastic" alt="Twitter"></a>
                             </div>
                         </li>
                     </ul>
@@ -107,7 +105,7 @@
         
             <div class="row">
                 
-                <div class="col-md-8">
+                <!--div class="col-md-8"-->
                 
                     <div class="jumbotron">
 
@@ -115,27 +113,33 @@
                     
                         <p>Trimou is a <a href="https://github.com/mustache" target="_blank">Mustache</a> templating engine implementation written in Java. <strong>Helper API</strong> inspired by <a href="http://handlebarsjs.com/" target="_blank">Handlebars.js</a> is also included. The goal is to provide a <strong>simple to use</strong> and
                         <strong>easy to extend</strong> templating engine for any Java SE or Java EE application. Trimou is available under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.</p>
-                    
-                        <p>The most notable advanced features include:</p>
-                        <ul>
-                            <li>Template caching</li>
-                            <li>Template inheritance</li>
-                            <li>Helper API (inspired by Handlebars.js)</li>
-                            <li>Many extension points (template locators, resolvers, text support, etc.)</li>
-                            <li>Ready-to-use extensions out of the box (CDI, Servlets, PrettyTime, Dropwizard, etc.)</li>
-                        </ul>
-                    
+                        <p>The most notable advanced features include <a href="http://trimou.org/doc/latest.html#use_template_locator" target="_blank">template caching</a>, <a href="http://trimou.org/doc/latest.html#extend" target="_blank">template inheritance</a>, <a href="http://trimou.org/doc/latest.html#helpers" target="_blank">Helper API</a>, <a href="http://trimou.org/doc/latest.html#how_to_extend" target="_blank">many extension points</a> and ready-to-use extensions out of the box (CDI, Servlets, PrettyTime, Dropwizard, etc.)</p>
                     </div>
+                    
+                    <div>
+                    
+                        <h2>Get the latest version <a href="http://search.maven.org/#search%7Cga%7C1%7Ctrimou-core" target="_blank">
+                                    <img style="max-width:100%;" src="http://img.shields.io/maven-central/v/org.trimou/trimou-core.svg" alt="Maven Central">
+                                </a></h2>
                 
-                </div>
-                
-                <div class="col-md-4">
-                    <a class="twitter-timeline" href="https://twitter.com/TrimouTemplates" data-widget-id="605738322074476544">Tweets by @TrimouTemplates</a>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                </div>
-                
+                        <p>All the artifacts are available in <a target="_blank" href="http://search.maven.org/#search|ga|1|trimou">the Maven Central Repository</a>:</p>
+                            <pre><code class="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-core&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+            
             </div>
                 
+                <!--/div-->
+                
+                <!--div class="col-md-4">
+                    <a class="twitter-timeline" href="https://twitter.com/TrimouTemplates" data-widget-id="605738322074476544">Tweets by @TrimouTemplates</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </div-->
+                
+            </div>
+            
             <div class="row">
                 
                 <h2>Get started!</h2>
@@ -144,8 +148,7 @@
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#maven" aria-controls="maven" role="tab" data-toggle="tab">Get the latest version</a></li>
-                        <li role="presentation"><a href="#hello" aria-controls="caching" role="tab" data-toggle="tab">Hello world!</a></li>
+                        <li role="presentation" class="active"><a href="#hello" aria-controls="caching" role="tab" data-toggle="tab">Hello world!</a></li>
                         <li role="presentation"><a href="#caching" aria-controls="caching" role="tab" data-toggle="tab">Template locators and caching</a></li>
                         <li role="presentation"><a href="#inheritance" aria-controls="inheritance" role="tab" data-toggle="tab">Template inheritance</a></li>
                         <li role="presentation"><a href="#helpers" aria-controls="helpers" role="tab" data-toggle="tab">Helpers</a></li>
@@ -153,16 +156,8 @@
 
                   <!-- Tab panes -->
                   <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="maven">
-                        <p>All the artifacts are available in <a target="_blank" href="http://search.maven.org/#search|ga|1|trimou">the Maven Central Repository</a>.</p>
-                            <pre><code class="xml">&lt;dependency&gt;
-  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
-  &lt;artifactId&gt;trimou-core&lt;/artifactId&gt;
-  &lt;version&gt;1.8.2.Final&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-                    </div>
                     
-                    <div role="tabpanel" class="tab-pane" id="hello">
+                    <div role="tabpanel" class="tab-pane active" id="hello">
                         <p>And now for something completely different...</p>
                         <pre><code class="java">Mustache mustache = MustacheEngineBuilder
                     .newBuilder()
@@ -254,7 +249,7 @@ Hello world!</code></pre>
                 <a href="https://twitter.com/TrimouTemplates" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @TrimouTemplates</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                 </div-->
-                &copy; 2015 Trimou team
+                &copy; 2016 Trimou team
             </div>
         </div>
         

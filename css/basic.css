@@ -39,25 +39,15 @@ div.content {
 .navbar-header {
 }
 
-.navbar-default {
-    background-color: #efefef;
-    border-color: #e7e7e7;
-}
-
-.navbar-default a {
+.navbar-inverse a {
     font-weight: normal;
-    font-size: 0.9em;
 }
 
-.navbar-default .navbar-nav > li > a {
-    color: #4a4a4a;
+.navbar-inverse .navbar-nav > li > a:hover {
+    background-color: black;
 }
 
-.navbar-default .navbar-nav > li {
-    border-right: 2px solid #f6f4f4;
-}
-
-.navbar-default .navbar-brand {
+.navbar-inverse .navbar-brand {
     color: white;
     font-weight: bold;
     padding: 3px 5px 3px 20px;
@@ -65,6 +55,7 @@ div.content {
 
 .navbar-nav > li > a:hover {
     color: black;
+    
 }
 
 .nav-tabs > li > a {
@@ -73,7 +64,6 @@ div.content {
 }
 
 div.jumbotron {
-    height: 600px;
     padding-top: 30px;
     margin-bottom: 0px;
 }
@@ -127,8 +117,8 @@ li code, p code, p tt, p tt, td.content tt {
 }
 
 .container .jumbotron, .container-fluid .jumbotron {
-    background-color: #6cae37;
-    color: white;
+    /**background-color: #6cae37;
+    color: white;**/
 }
 
 i.menu-icon {
