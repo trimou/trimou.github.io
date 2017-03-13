@@ -1,0 +1,2562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Trimou Documentation - 2.2.0.Final</title>
+<style>
+html {
+    font-size: small;
+}
+
+body {
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 115%;
+    padding: 50px;
+    text-rendering: optimizelegibility;
+    width: 60em;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+div.listingblock pre .tag .title {
+    color:white;
+}
+
+div.listingblock div.content {
+    // background-color: silver;
+    // background-color: #2a2a2b;
+    // color: white;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: Cousine, ​ "Liberation Mono", ​monospace;
+}
+
+div.listingblock div.content pre {
+    // background-color: none;
+    font-size: 1.2em;
+}
+
+div.listingblock .title {
+    font-weight: bold;
+}
+
+h1,h2,h3,h4,h5 {
+    color: #6CAE37;
+}
+
+h2,h3,h4,h5 {
+    margin-top: 1.6em;
+}
+
+div.admonitionblock {
+    border-radius: 4px 4px 4px 4px;
+    margin-top: 15px;
+}
+
+div.admonitionblock .icon .title {
+    font-weight: bold;
+    color: #404040;
+    border-right: 1px solid silver;
+    padding: 10px;
+}
+
+div.warning {
+    border: 1px solid #F9A996;
+    background-color: #f2dede;
+}
+
+div.note {
+    border: 1px solid #7dcf7d;
+    background-color: #dff0d8;
+}
+
+div.tip {
+    border: 1px solid yellow;
+    background-color: #fcf8e3;
+}
+
+div.admonitionblock .content {
+    padding: 15px;
+}
+
+div.colist {
+    font-family: monospace;
+    font-size: 1.3em;
+}
+
+a, a:active, a:visited {
+    color: #6CAE37;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+p code, p tt, p tt, td.content tt, div.note code {
+    background-color: #EFEFEF;
+    border: 1px solid #E2E2E2;
+    border-radius: 3px 3px 3px 3px;
+    /*color: #507e2a;*/
+    padding: 2px 3px 0;
+    white-space: nowrap;
+    font-size: 1.2em;
+}
+
+pre {
+    overflow: auto;
+}
+
+#content pre code {
+    // background: none repeat scroll 0 0;
+    // color: white;
+    /*background: none repeat scroll 0 0 #F8F8F8;*/
+}
+
+#toc ol {
+    list-style: none;
+}
+
+table.tableblock {
+    border-bottom: 3px solid #6CAE37;
+    border-collapse: collapse;
+    /*border-radius: 4px 4px 4px 4px;*/
+    border-spacing: 1px;
+    border-top: 3px solid #6CAE37;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+table.tableblock caption {
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 0.2em;
+    padding-top: 0.5em;
+    text-align: left;
+}
+
+table.tableblock tr {
+    background: none repeat scroll 0 0 #F9F9F9;
+    border-top: 1px solid #ececec;
+}
+
+table.tableblock td {
+    /*border-top: 1px solid silver;*/
+    /*border-left: 1px solid #6CAE37;*/
+    padding-left: 4px;
+    border: 1px solid silver;
+}
+
+table.tableblock td p {
+    margin: 8px;
+}
+
+table.tableblock thead tr th {
+    background-color: #6cae37;
+    color: white;
+    padding: 0px;
+    text-transform: uppercase;
+}
+
+</style>
+</head>
+<body class="article">
+<div id="header">
+<h1>Trimou Documentation - 2.2.0.Final</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#intro">1. What is Trimou?</a></li>
+<li><a href="#features">2. Features</a>
+<ul class="sectlevel2">
+<li><a href="#variables">2.1. Variables, interpolation tags</a>
+<ul class="sectlevel3">
+<li><a href="#escaping_hml">2.1.1. Escaping HTML</a></li>
+</ul>
+</li>
+<li><a href="#sections">2.2. Sections</a></li>
+<li><a href="#inverted_sections">2.3. Inverted sections</a></li>
+<li><a href="#partials">2.4. Partials</a></li>
+<li><a href="#delimiters">2.5. Delimiters</a></li>
+<li><a href="#lambdas">2.6. Lambdas</a>
+<ul class="sectlevel3">
+<li><a href="#_simple_lambdas">2.6.1. Simple lambdas</a></li>
+</ul>
+</li>
+<li><a href="#extend">2.7. Extending templates</a></li>
+<li><a href="#helpers">2.8. Built-in helpers</a>
+<ul class="sectlevel3">
+<li><a href="#_example_of_resourcebundlehelper">2.8.1. Example of ResourceBundleHelper</a></li>
+</ul>
+</li>
+<li><a href="#nested_templates">2.9. Nested templates</a></li>
+</ul>
+</li>
+<li><a href="#how_to_use">3. How to use</a>
+<ul class="sectlevel2">
+<li><a href="#get_started">3.1. Get started</a>
+<ul class="sectlevel3">
+<li><a href="#simple_scenario">3.1.1. The simplest possible scenario</a></li>
+<li><a href="#_provide_your_own_appendable">3.1.2. Provide your own Appendable</a></li>
+<li><a href="#configure_engine">3.1.3. Configure the engine</a></li>
+</ul>
+</li>
+<li><a href="#use_template_locator">3.2. Make use of template cache and template locators</a>
+<ul class="sectlevel3">
+<li><a href="#_note_about_file_encoding">3.2.1. Note about file encoding</a></li>
+</ul>
+</li>
+<li><a href="#configuration">3.3. Configuration properties</a></li>
+<li><a href="#i18n">3.4. Basic i18n support</a>
+<ul class="sectlevel3">
+<li><a href="#_datetimeformatresolver_example">3.4.1. DateTimeFormatResolver example</a></li>
+</ul>
+</li>
+<li><a href="#debug">3.5. Debugging</a></li>
+</ul>
+</li>
+<li><a href="#how_to_extend">4. How to extend</a>
+<ul class="sectlevel2">
+<li><a href="#resolver">4.1. Resolver</a>
+<ul class="sectlevel3">
+<li><a href="#_custom_resolvers">4.1.1. Custom resolvers</a></li>
+<li><a href="#_enhancedresolver">4.1.2. EnhancedResolver</a></li>
+</ul>
+</li>
+<li><a href="#template_locator">4.2. TemplateLocator</a></li>
+<li><a href="#text_support">4.3. TextSupport</a></li>
+<li><a href="#locale_support">4.4. LocaleSupport</a></li>
+<li><a href="#mustache_listener">4.5. MustacheListener</a></li>
+<li><a href="#custom_helpers">4.6. Helper</a>
+<ul class="sectlevel3">
+<li><a href="#_simple_helpers">4.6.1. Simple helpers</a></li>
+</ul>
+</li>
+<li><a href="#missingvaluehandler">4.7. MissingValueHandler</a></li>
+<li><a href="#keysplitter">4.8. KeySplitter</a></li>
+<li><a href="#computingcache">4.9. ComputingCacheFactory</a></li>
+<li><a href="#identifiergenerator">4.10. IdentifierGenerator</a></li>
+<li><a href="#literalSupport">4.11. LiteralSupport</a></li>
+<li><a href="#valueConverter">4.12. ValueConverter</a></li>
+</ul>
+</li>
+<li><a href="#extensions">5. Extensions</a>
+<ul class="sectlevel2">
+<li><a href="#cdi">5.1. CDI</a>
+<ul class="sectlevel3">
+<li><a href="#_cdibeanresolver">5.1.1. CDIBeanResolver</a></li>
+<li><a href="#_rendering_context">5.1.2. Rendering context</a></li>
+</ul>
+</li>
+<li><a href="#servlets">5.2. Servlets</a>
+<ul class="sectlevel3">
+<li><a href="#_servletcontexttemplatelocator">5.2.1. ServletContextTemplateLocator</a></li>
+<li><a href="#_httpservletrequestresolver">5.2.2. HttpServletRequestResolver</a></li>
+<li><a href="#_requestlocalesupport">5.2.3. RequestLocaleSupport</a></li>
+</ul>
+</li>
+<li><a href="#prettytime">5.3. PrettyTime</a>
+<ul class="sectlevel3">
+<li><a href="#_prettytimeresolver">5.3.1. PrettyTimeResolver</a></li>
+<li><a href="#_prettytimehelper">5.3.2. PrettyTimeHelper</a></li>
+</ul>
+</li>
+<li><a href="#minify">5.4. Minify</a>
+<ul class="sectlevel3">
+<li><a href="#_minifylistener">5.4.1. MinifyListener</a></li>
+<li><a href="#_minifylambda">5.4.2. MinifyLambda</a></li>
+<li><a href="#_minifier_interface">5.4.3. Minifier interface</a></li>
+</ul>
+</li>
+<li><a href="#gson">5.5. Gson</a>
+<ul class="sectlevel3">
+<li><a href="#_gsonvalueconverter">5.5.1. GsonValueConverter</a></li>
+<li><a href="#_jsonelementresolver">5.5.2. JsonElementResolver</a>
+<ul class="sectlevel4">
+<li><a href="#_example_code">Example code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#json-p">5.6. JSON Processing (JSR 353)</a>
+<ul class="sectlevel3">
+<li><a href="#_jsonprocessingvalueconverter">5.6.1. JsonProcessingValueConverter</a></li>
+<li><a href="#_jsonvalueresolver">5.6.2. JsonValueResolver</a>
+<ul class="sectlevel4">
+<li><a href="#_example_code_2">Example code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#spring_mvc">5.7. Spring MVC integration</a>
+<ul class="sectlevel3">
+<li><a href="#_spring_3_x">5.7.1. Spring 3.x</a></li>
+<li><a href="#_spring_4_x">5.7.2. Spring 4.x</a>
+<ul class="sectlevel4">
+<li><a href="#_i18n_support">i18n Support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#spring-boot">5.8. Spring Boot Starter</a></li>
+<li><a href="#dropwizard">5.9. Dropwizard</a>
+<ul class="sectlevel3">
+<li><a href="#_trimouviewrenderer">5.9.1. TrimouViewRenderer</a></li>
+</ul>
+</li>
+<li><a href="#el">5.10. EL 3.0</a>
+<ul class="sectlevel3">
+<li><a href="#_elifhelper">5.10.1. ELIfHelper</a></li>
+<li><a href="#_elhelper">5.10.2. ELHelper</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="intro">1. What is Trimou?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Trimou is yet another Java templating engine.
+It&#8217;s a <a href="https://github.com/mustache">Mustache</a> implementation but <strong>Helpers API</strong> (inspired by <a href="http://handlebarsjs.com/">Handlebars.js</a>) is also supported.
+The goal is to provide a <strong>simple to use</strong> and <strong>easy to extend</strong> templating engine for any Java SE or Java EE application.
+There are some ready-to-use extensions which provide integration with <a href="http://www.cdi-spec.org/">CDI</a>, Servlets, <a href="http://ocpsoft.org/prettytime/">PrettyTime</a>,  <a href="http://code.google.com/p/htmlcompressor/">HtmlCompressor</a>, <a href="http://code.google.com/p/google-gson/">google-gson</a>, <a href="https://jsonp.java.net/">JSON Processing Object Model API (JSR 353)</a>, <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html">Spring MVC</a>, <a href="https://dropwizard.github.io/dropwizard/">Dropwizard</a> and <a href="https://uel.java.net/">EL 3.0</a> (see <a href="#extensions">Extensions</a> section for more info).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Trimou is available under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="features">2. Features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The basic features of every Mustache implementation are defined in <a href="https://github.com/mustache/spec">the Mustache spec</a>. Trimou passes all the tests (version 1.1.2), except <strong>"Section - Alternate Delimiters"</strong> from lambdas optional module.</p>
+</div>
+<div class="paragraph">
+<p>The most notable enhancements are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Template caching</p>
+</li>
+<li>
+<p>Template inheritance</p>
+</li>
+<li>
+<p>Nested templates</p>
+</li>
+<li>
+<p>Helpers API (inspired by Handlebars.js)</p>
+</li>
+<li>
+<p>Basic i18n support</p>
+</li>
+<li>
+<p>Extended processing of lambdas</p>
+</li>
+<li>
+<p>Extension points (template locators, resolvers, text support, &#8230;&#8203;)</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="variables">2.1. Variables, interpolation tags</h3>
+<div class="paragraph">
+<p><strong>Spec description</strong>: <a href="https://github.com/mustache/spec/blob/master/specs/interpolation.yml" class="bare">https://github.com/mustache/spec/blob/master/specs/interpolation.yml</a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The interpolation tag&#8217;s content is called a <strong>key</strong> hereafter. The key consists of one or more dot-separated parts - a <strong>key part</strong> (<code>"foo"</code> &#8594; <code>["foo"]</code>, <code>"foo.bar.name"</code> &#8594; <code>["foo, "bar", "name"]</code>). The current object the key part is resolved against is called a <strong>context object</strong> hereafter.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In general Trimou interpolation works very similar to the spec description - walk the context object stack from top to bottom, and resolve the value for the given part of the key (first part againts the context stack, other parts against the result from the former resolution).</p>
+</div>
+<div class="paragraph">
+<p>However there are some differences:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>it&#8217;s possible to use <code>this</code> keyword to reference the object atop the context object stack; the spec only allows <code>.</code>,</p>
+</li>
+<li>
+<p>if the context object is an instance of a <code>java.util.Map</code>, value of the entry with the given key is resolved,</p>
+</li>
+<li>
+<p>for any context object Trimou tries to:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>find and invoke an accessible public method with no params, non-void return type and name <code>keypart</code>, <code>getKeypart</code> or <code>isKeypart</code> defined on the context object&#8217;s class and its superclasses (except for <code>java.lang.Object</code>),</p>
+</li>
+<li>
+<p>find an accessible public field with name <code>keypart</code> and get its value,</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>java.util.List</code> and array elements can be accessed via index (the key must be an unsigned integer),</p>
+</li>
+<li>
+<p>an iteration metada object is available inside an iteration block, the default alias is <code>iter</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>the alias can be configured, see <a href="#configuration">Configuration</a>,</p>
+</li>
+<li>
+<p>this metadata has some useful properties: <code>iter.index</code> (the first element is at index <code>1</code>), <code>iter.position</code> (the first element has position <code>0</code>), <code>iter.hasNext</code>, <code>iter.isFirst</code> and <code>iter.isLast</code>,</p>
+</li>
+<li>
+<p>alternatively <code>iterIndex</code>, <code>iterHasNext</code>, <code>iterIsFirst</code> and <code>iterIsLast</code> keywords can be used,</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Trimou allows you to define a resolver that does not handle the context object stack at all (e.g. looks up a <a href="#cdi">CDI bean</a>).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Examples:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{foo}} <b class="conum">(1)</b>
+
+{{foo.bar}} <b class="conum">(2)</b>
+
+{{list.0}} <b class="conum">(3)</b>
+
+{{array.5}} <b class="conum">(4)</b>
+
+{{#items}}
+  {{iter.index}} <b class="conum">(5)</b>
+  {{#iter.isFirst}} The is the first one! {{/iter.isFirst}} <b class="conum">(6)</b>
+  {{#iter.isLast}} This is the last one! {{/iter.isLast}} <b class="conum">(7)</b>
+  {{name}} <b class="conum">(8)</b>
+  {{#iter.hasNext}}, {{/iter.hasNext}} <b class="conum">(9)</b>
+{{/items}}
+
+{{#quxEnumClass.values}} <b class="conum">(10)</b>
+  {{this}}
+{{/quxEnumClass.values}}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Try to get a value of key "foo" from the context object stack, e.g. if the supplied data context object is an instance of Map get the value of key "foo"</p>
+</li>
+<li>
+<p>Try to get a value of key "bar" from the context object resolved in &lt;1&gt;, e.g. try to invoke bar(), getBar() or isBar() on the "foo" instance or get the value of the field with name "bar"</p>
+</li>
+<li>
+<p>Get the first element</p>
+</li>
+<li>
+<p>Get the sixth element</p>
+</li>
+<li>
+<p>The current iteration index (the first element is at index 1)</p>
+</li>
+<li>
+<p>Render the text for the first iteration</p>
+</li>
+<li>
+<p>Render the text for the last iteration</p>
+</li>
+<li>
+<p>"name" is resolved against the context object stack (iteration element, supplied data map)</p>
+</li>
+<li>
+<p>Render a comma if the iteration has more elements (iterHasNext is true)</p>
+</li>
+<li>
+<p>It&#8217;s also possible to invoke static methods; quxEnumClass is an enum class here and we iterate over the array returned from static method values()</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The set of resolvers may be extended - so in fact the above mentioned applies to the default set of resolvers only.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="escaping_hml">2.1.1. Escaping HTML</h4>
+<div class="paragraph">
+<p>The interpolated value is escaped unless <code>&amp;</code> is used. The spec only tests the basic escaping (<code>&amp;</code>, <code>"</code>, <code>&lt;</code>, <code>&gt;</code>).</p>
+</div>
+<div class="listingblock">
+<div class="title">Examples:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{foo}} <b class="conum">(1)</b>
+
+{{&amp; foo}} <b class="conum">(2)</b>
+
+{{{foo}}} <b class="conum">(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Escape foo</p>
+</li>
+<li>
+<p>Do not escape foo</p>
+</li>
+<li>
+<p>Do not escape foo; works only for default delimiters!</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+You can implement your own escaping logic, e.g. to improve escaping performance - see <a href="#configure_engine">Configure the engine</a> and <a href="#text_support">TextSupport</a> sections.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sections">2.2. Sections</h3>
+<div class="paragraph">
+<p><strong>Spec description</strong>: <a href="https://github.com/mustache/spec/blob/master/specs/sections.yml" class="bare">https://github.com/mustache/spec/blob/master/specs/sections.yml</a></p>
+</div>
+<div class="paragraph">
+<p>The section content is rendered one or more times if there is an object found for the given key. If the found object is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>non-empty <code>Iterable</code> or array, the content is rendered for each element,</p>
+</li>
+<li>
+<p>a <code>Boolean</code> of value <code>true</code>, the content is rendered once,</p>
+</li>
+<li>
+<p>an instance of <code>Lambda</code>, the content is processed according to the <a href="#lambdas">lambda&#8217;s specification</a>,</p>
+</li>
+<li>
+<p>any other non-null object represents a nested context.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The section content is not rendered if there is no object found, or the found object is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a <code>Boolean</code> of value <code>false</code>,</p>
+</li>
+<li>
+<p>an <code>Iterable</code> with no elements,</p>
+</li>
+<li>
+<p>an empty array.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Examples:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{#boolean}}
+   This line will be rendered only if "boolean" key resolves to java.lang.Boolean#TRUE, or true
+{{/boolean}}
+
+{{#iterable_or_array}}
+  This line will be rendered for each element, and the element is pushed on the context object stack
+{{/iterable_or_array}}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inverted_sections">2.3. Inverted sections</h3>
+<div class="paragraph">
+<p><strong>Spec description</strong>: <a href="https://github.com/mustache/spec/blob/master/specs/inverted.yml" class="bare">https://github.com/mustache/spec/blob/master/specs/inverted.yml</a></p>
+</div>
+<div class="paragraph">
+<p>The content is rendered if there is no object found in the context, or is a <code>Boolean</code> of value <code>false</code>, or is an <code>Iterable</code> with no elements, or is an empty array.</p>
+</div>
+<div class="listingblock">
+<div class="title">Examples:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{^iterable}}
+  This line will be rendered if the resolved iterable has no elements
+{{/iterable}}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="partials">2.4. Partials</h3>
+<div class="paragraph">
+<p><strong>Spec description</strong>: <a href="https://github.com/mustache/spec/blob/master/specs/partials.yml" class="bare">https://github.com/mustache/spec/blob/master/specs/partials.yml</a></p>
+</div>
+<div class="paragraph">
+<p>Partials only work if at least one template locator is in action. Otherwise the template cache is not used and there is no way to locate the required partial (template). See <a href="#configure_engine">Configure the engine</a> and <a href="#template_locator">Template locator</a> sections for more info.</p>
+</div>
+<div class="listingblock">
+<div class="title">Examples:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{#items}}
+  {{&gt;item_detail}} - process the template with name "item_detail" for each iteration element
+{{/items}}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delimiters">2.5. Delimiters</h3>
+<div class="paragraph">
+<p><strong>Spec description</strong>: <a href="https://github.com/mustache/spec/blob/master/specs/delimiters.yml" class="bare">https://github.com/mustache/spec/blob/master/specs/delimiters.yml</a></p>
+</div>
+<div class="listingblock">
+<div class="title">Examples:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{=%% %%=}} - from now on use custom delimiters
+
+%%foo.name%% - interpolate "foo.name"
+
+%%={{ }}=%% - switch back to default values</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+It&#8217;s also possible to change the delimiters globally, see <a href="#configuration">Configuration</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="lambdas">2.6. Lambdas</h3>
+<div class="paragraph">
+<p><strong>Spec description</strong>: <a href="https://github.com/mustache/spec/blob/master/specs/lambdas.yml" class="bare">https://github.com/mustache/spec/blob/master/specs/lambdas.yml</a></p>
+</div>
+<div class="paragraph">
+<p>You can implement <code>org.trimou.lambda.Lambda</code> interface in order to define a lambda/callable object. Predefined abstract <code>org.trimou.lambda.SpecCompliantLambda</code> follows the behaviour defined by the spec:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">Lambda makeMeBold = new SpecCompliantLambda() {
+  @Override
+  public String invoke(String text) {
+    return "&lt;b&gt;" ` text ` "&lt;/b&gt;";
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and template</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{#makeMeBold}}
+  Any text...{{name}}
+{{/makeMeBold}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>results in:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Bash" data-lang="Bash">  &lt;b&gt;Any text...{{name}}&lt;/b&gt;
+-&gt; the variable is not interpolated</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use predefined abstract classes like <code>org.trimou.lambda.InputProcessingLambda</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">Lambda makeMeUppercase = new InputProcessingLambda() {
+  @Override
+  public String invoke(String text) {
+    return text.toUpperCase();
+  }
+  @Override
+  public boolean isReturnValueInterpolated() {
+    return false;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and template</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{#makeMeUppercase}}
+  Any text...{{name}}
+{{/makeMeUppercase}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>results in:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Bash" data-lang="Bash">  ANY TEXT...EDGAR
+-&gt; the variable is interpolated before the lambda invoke() method is invoked</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <code>org.trimou.lambda.Lambda</code> API javadoc for more info.</p>
+</div>
+<div class="sect3">
+<h4 id="_simple_lambdas">2.6.1. Simple lambdas</h4>
+<div class="paragraph">
+<p><code>org.trimou.lambda.SimpleLambdas</code> utility class and its builder allow to create simple lambdas using JDK8 funcional interfaces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder
+        .newBuilder()
+        .addGlobalData("toLowerCase",
+            SimpleLambdas.invoke((t) -&gt; t.toLowerCase())
+        ).build();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="extend">2.7. Extending templates</h3>
+<div class="paragraph">
+<p>This feature is not supported in the spec. Trimou basically follows the way <a href="https://github.com/spullara/mustache.java">mustache.java</a> implements the template inheritance. In the extended template, the sections to extend are defined - use <code>$</code> to identify such sections. In extending templates, the extending sections are defined - again, use <code>$</code> to identify such sections. Sections to extend may define the default content.</p>
+</div>
+<div class="paragraph">
+<p>Following template with name "super":</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">This a template to extend
+{{$header}} -&gt; section to extend
+  The default header
+{{/header}}
+In between...
+{{$content}} -&gt; section to extend
+  The default content
+{{/content}}
+&amp;copy; 2013</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>can be extended in this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">Hello world!
+{{&lt;super}}
+  {{$header}} -&gt; extending section
+    My own header
+  {{/header}}
+  Only extending sections are considered...
+{{/super}}
+Lalala...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and the result is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Bash" data-lang="Bash">Hello world!
+This a template to extend <b class="conum">(1)</b>
+    My own header <b class="conum">(2)</b>
+In between...
+  The default content <b class="conum">(3)</b>
+&amp;copy; 2013 <b class="conum">(4)</b>
+Lalala...</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>"super" start</p>
+</li>
+<li>
+<p>section "header" is extended</p>
+</li>
+<li>
+<p>section "content" has the default content</p>
+</li>
+<li>
+<p>"super" end</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="helpers">2.8. Built-in helpers</h3>
+<div class="paragraph">
+<p>Since version 1.5.0  helpers API inspired by <a href="http://handlebarsjs.com/">Handlebars.js</a> is supported. There are five helpers registered automatically: <code>if</code>, <code>unless</code>, <code>each</code>, <code>with</code> (see <a href="http://handlebarsjs.com" class="bare">http://handlebarsjs.com</a> for examples :-) and <code>is</code> (an inline version of if).</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<code>if</code> and <code>unless</code> helpers also support multiple params evaluation. See the javadoc for more info.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Other helpers may be registered via <code>MustacheEngineBuilder.registerHelper()</code> or <code>MustacheEngineBuilder.registerHelpers()</code> methods. <code>org.trimou.handlebars.HelpersBuilder</code> is useful when registering most built-in helpers with sensible default names.</p>
+</div>
+<div class="paragraph">
+<p>See also <a href="#custom_helpers">Helper</a> section to know how to create your own custom helpers.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Handlebars support is enabled by default. See <code>HANDLEBARS_SUPPORT_ENABLED</code> in <a href="#configuration">Configuration properties</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Trimou provides some useful helpers which are not registered automatically:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Class</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.ChooseHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Works similarly as the JSP c:choose tag - it renders the content of the first <code>when</code> section whose first parameter is not falsy. If no <code>when</code> section is rendered, <code>otherwise</code> section is rendered, if present.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">choose</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.SwitchHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Works similarly as the Java switch statement.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">switch</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.SetHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Works similarly as WithHelper except the current hash is pushed on the context stack.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.EvalHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to build the key dynamically and evaluate it afterwards.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">eval</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.IncludeHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Works similarly as the partial tag except the name of the template to include may be obtained dynamically.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">include</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.LogHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logs debug messages.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">log</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.JoinHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Takes all the objects specified as the parameters and joins the <code>Object#toString()</code> values together with the specified delimiter (optional). Elements of <code>Iterable</code> and array are treated as separate objects. An optional lambda may be applied to each value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">join</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.EmbedHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Embeds the template source (by default as a JavaScript snippet).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">embed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.NullCheckHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Renders a block if the param is/isn&#8217;t null.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">isNull/isNotNull</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.EqualsHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Renders a block if the first param does/doesn&#8217;t equal to the second param.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">isEq/isNotEq</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.NumericExpressionHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A simple numeric expression helper. <code>{{#numExpr myVal 10 op="gt"}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">numExpr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.NumberIsEvenHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Renders a block/text if the param is an even number.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">isEven</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.NumberIsOddHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Renders a block/text if the param is an odd number.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">isOdd</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.i18n.ResourceBundleHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays localized messages.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.i18n.DateTimeFormatHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays localized times.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.i18n.TimeFormatHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An alternative to <code>DateTimeFormatHelper</code>  which makes use of java.time package in JDK 8 (JSR-310). It supports new temporal types and should also be less resource-intensive.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.AsyncHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A helper whose content is rendered asynchronously.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">async</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.InvokeHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Invokes public methods with parameters via reflection.
+<code>{{invoke "f" "b" on="foo" m="replace"}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">invoke</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.AlternativesHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Renders the first non-null/nonempty (default condition) parameter. It&#8217;s useful to specify default values:
+<code>{{alt username "Joe"}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alt</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.CacheHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to cache template fragments in memory. It&#8217;s useful for resource-intensive parts of the template that rarely change.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cache</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.RepeatHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to repeat a section multiple times or until the <code>while</code> expression evaluates to a "falsy" value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">repeat</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_example_of_resourcebundlehelper">2.8.1. Example of ResourceBundleHelper</h4>
+<div class="paragraph">
+<p>Suppose we have the following resource bundle file:</p>
+</div>
+<div class="listingblock">
+<div class="title">messages.properties</div>
+<div class="content">
+<pre>my.message.key=My name is %s!
+hello.key.messageformat=Hello {0}!</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can use a <code>ResourceBundleHelper</code> to render messages:</p>
+</div>
+<div class="listingblock">
+<div class="title">Register the helper</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder
+                           .newBuilder()
+                           .registerHelper("msg", new ResourceBundleHelper("messages")) <b class="conum">(1)</b>
+                           .build();
+...</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Template</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{msg "my.message.key" "Martin"}}
+{{msg "hello.key.messageformat" "world" format="message"}}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Expected output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Bash" data-lang="Bash">My name is Martin!
+Hello world!</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="nested_templates">2.9. Nested templates</h3>
+<div class="paragraph">
+<p>Any template may define any number of nested templates - use a section with <code>+</code> to identify a nested template.
+A nested template is only available within a defining template through the partial tag (or a special helper, e.g. <code>IncludeHelper</code>).
+If there is a regular template with the same name available the nested template has precedence.
+It&#8217;s not possible to define a nested template within a nested template definition.</p>
+</div>
+<div class="listingblock">
+<div class="title">Nested Template Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{! This is the nested template definition }}
+{{+item_detail}}
+  Name: {{name}}
+  Price: {{price}}
+{{/item_detail}}
+
+{{! Inject partial }}
+{{#each activeItems}}
+  {{&gt;item_detail}}
+{{/each}}
+
+{{! Inject partial again }}
+{{#each allItems}}
+  {{&gt;item_detail}}
+{{/each}}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The support for nested templates is enabled by default. See also <code>NESTED_TEMPLATE_SUPPORT_ENABLED</code> in <a href="#configuration">Configuration properties</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how_to_use">3. How to use</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="get_started">3.1. Get started</h3>
+<div class="paragraph">
+<p>First, get the <code>trimou-core.jar</code> and <code>slf4j-api</code> as its dependency.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-core&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And now for something completely different&#8230;&#8203;</p>
+</div>
+<div class="sect3">
+<h4 id="simple_scenario">3.1.1. The simplest possible scenario</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">String data = "Hello world!";
+String template = "{{this}}";
+MustacheEngine engine = MustacheEngineBuilder.newBuilder().build(); <b class="conum">(1)</b>
+Mustache mustache = engine.compileMustache("myTemplateName", template); <b class="conum">(2)</b>
+String output = mustache.render(data); <b class="conum">(3)</b>
+
+<b class="conum">(1)</b> <b class="conum">(2)</b> <b class="conum">(3)</b>
+String output = MustacheEngineBuilder
+                  .newBuilder()
+                  .build()
+                  .compileMustache("myTemplateName", template)
+                  .render(data);
+
+// Both snippets will render "Hello world!"</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Build the engine</p>
+</li>
+<li>
+<p>Compile the template</p>
+</li>
+<li>
+<p>Render the template</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Instances of <code>MustacheEngineBuilder</code> are not reusable. The builder is considered immutable once the
+ <code>build()</code> method is called - subsequent invocations of any modifying method or <code>build()</code> methods result in <code>IllegalStateException</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_provide_your_own_appendable">3.1.2. Provide your own Appendable</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder.newBuilder().build();
+Mustache mustache = engine.compileMustache("fooTemplate", "{{foo}}");
+
+// It's possible to pass a java.lang.Appendable impl, e.g. any java.io.Writer
+StringWriter writer = new StringWriter();
+
+mustache.render(writer, ImmutableMap.&lt;String, Object&gt; of("foo", "bar"));
+// writer.toString() -&gt; "bar"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="configure_engine">3.1.3. Configure the engine</h4>
+<div class="paragraph">
+<p>You may want to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add template locators; see also <a href="#use_template_locator">Make use of template cache and template locators</a></p>
+</li>
+<li>
+<p>Add thread-safe global data objects (available during execution of all templates)</p>
+</li>
+<li>
+<p>Add custom resolvers; see also <a href="#resolver">Resolver</a></p>
+</li>
+<li>
+<p>Add template listeners; see also <a href="#mustache_listener">MustacheListener</a></p>
+</li>
+<li>
+<p>Register additional helpers; see also <a href="#custom_helpers">Helper</a></p>
+</li>
+<li>
+<p>Set custom <code>TextSupport</code> implementation; see <a href="#text_support">TextSupport</a></p>
+</li>
+<li>
+<p>Set custom <code>LocaleSupport</code> implementation; see <a href="#locale_support">LocaleSupport</a></p>
+</li>
+<li>
+<p>Set custom <code>MissingValueHandler</code>; see <a href="#missingvaluehandler">MissingValueHandler</a></p>
+</li>
+<li>
+<p>Set custom <code>KeySplitter</code>; see <a href="#keysplitter">KeySplitter</a></p>
+</li>
+<li>
+<p>Set configuration properties; see <a href="#configuration">Configuration properties</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Simply use appropriate <code>MustacheEngineBuilder</code> methods, e.g.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder
+                            .newBuilder()
+                            .addGlobalData("fooLambda", mySuperUsefulLambdaInstance)
+                            .build();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use_template_locator">3.2. Make use of template cache and template locators</h3>
+<div class="paragraph">
+<p>Template locators automatically locate the template contents for the given template id (name, path, &#8230;&#8203;). So that it&#8217;s not necessary to supply the template contents every time the template is compiled. Moreover if the template cache is enabled the compiled template is automatically put in the cache and no compilation happens the next time the template is requested.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Template locators are required for <a href="#partials">partials</a>!
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder
+                           .newBuilder()
+                           .addTemplateLocator(new FilesystemTemplateLocator(1, "/home/trimou/resources", "txt")) <b class="conum">(1)</b>
+                           .build();
+Mustache mustache = engine.getMustache("foo"); <b class="conum">(2)</b>
+String output = mustache.render(null);</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Add a filesystem-based template locator with priority 1, root path "/home/trim/resources", template files have suffix "txt"</p>
+</li>
+<li>
+<p>Get the template with name "foo" from the template cache, compile it if not compiled before</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>There may be more than one template locators registered with the engine. Locators with <strong>higher priority</strong> are called <strong>first</strong>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Use <code>MustacheEngine#invalidateTemplateCache()</code> to invalidate all template cache entries and force recompilation.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See also <a href="#template_locator">TemplateLocator SPI</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_note_about_file_encoding">3.2.1. Note about file encoding</h4>
+<div class="paragraph">
+<p>Trimou does not perform any file encoding detection and conversion.
+Instead, any template locator must provide a <code>java.io.Reader</code> instance which is able to convert between Unicode and a other character encodings. Built-in locators don&#8217;t detect file encoding but use system file encoding by default. But it&#8217;s possible (and recommended) to define the default file encoding with configuration property <code>EngineConfigurationKey.DEFAULT_FILE_ENCODING</code> (see also <a href="#configuration">configuration properties</a>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Applications are encouraged to always define a default file encoding per every MustacheEngine instance.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration">3.3. Configuration properties</h3>
+<div class="paragraph">
+<p>Trimou engine properties can be configured through system properties, <code>trimou.properties</code> file or the property can be set manually with <code>MustacheEngineBuilder.setProperty(String, Object)</code> method. Manually set properties have higher priority than system properties which have higher priority than properties from <code>trimou.properties</code> file.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Trimou logs all configuration properties and values during engine initialization
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Engine configuration keys - see also <code>org.trimou.engine.config.EngineConfigurationKey</code> enum</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enum value / property key</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">START_DELIMITER
+</p><p class="tableblock"><strong>org.trimou.engine.config.startDelimiter</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{{</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default start delimiter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">END_DELIMITER
+</p><p class="tableblock"><strong>org.trimou.engine.config.endDelimiter</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default end delimiter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRECOMPILE_ALL_TEMPLATES
+</p><p class="tableblock"><strong>org.trimou.engine.config.precompileAllTemplates</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If enabled, all available templates from all available template locators will be compiled during engine initialization.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REMOVE_STANDALONE_LINES
+</p><p class="tableblock"><strong>org.trimou.engine.config.removeStandaloneLines</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remove "standalone lines" from each template during compilation to fullfill the spec requirements (and get more readable output :-)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REMOVE_UNNECESSARY_SEGMENTS
+</p><p class="tableblock"><strong>org.trimou.engine.config.removeUnnecessarySegments</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remove unnecessary segments (e.g. comments and delimiters tags) from each template during compilation. Having this enabled results in spec not-compliant output, but may improve performance a little bit.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NO_VALUE_INDICATES_PROBLEM
+</p><p class="tableblock"><strong>org.trimou.engine.config.noValueIndicatesProblem</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>DEPRECATED</strong> - see <a href="#missingvaluehandler">MissingValueHandler SPI</a>.
+</p><p class="tableblock">By default a variable miss returns an empty string. If set to <code>true</code> a <code>org.trimou.exception.MustacheException</code> with code <code>org.trimou.exception.MustacheProblem.RENDER_NO_VALUE</code> is thrown.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEBUG_MODE
+</p><p class="tableblock"><strong>org.trimou.engine.config.debugMode</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Debug mode disables the template cache and provides some more logging during template rendering.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CACHE_SECTION_LITERAL_BLOCK
+</p><p class="tableblock"><strong>org.trimou.engine.config.cacheSectionLiteralBlock</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The section-based literal blocks can be cached. This may be useful to optimize some lambdas processing scenarios, though it&#8217;s memory intensive.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TEMPLATE_RECURSIVE_INVOCATION_LIMIT
+</p><p class="tableblock"><strong>org.trimou.engine.config.templateRecursiveInvocationLimit</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The limit of recursive template invocation (partials, template inheritance); 0 - recursive invocation is forbidden.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SKIP_VALUE_ESCAPING
+</p><p class="tableblock"><strong>org.trimou.engine.config.skipValueEscaping</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code> interpolated values are never escaped, i.e. <code>org.trimou.engine.text.TextSupport.escapeHtml()</code> is never called.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEFAULT_FILE_ENCODING
+</p><p class="tableblock"><strong>org.trimou.engine.config.defaultFileEncoding</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">System property "file.encoding"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The encoding every template locator should use if reading template from a file. System file encoding by default.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TEMPLATE_CACHE_ENABLED
+</p><p class="tableblock"><strong>org.trimou.engine.config.templateCacheEnabled</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The template cache is enabled by default. If set to false every <code>MustacheEngine.getMustache()</code> invocation results in template lookup.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TEMPLATE_CACHE_EXPIRATION_TIMEOUT
+<strong>org.trimou.engine.config.templateCacheExpirationTimeout</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The template cache expiration timeout in seconds. Zero and negative values mean no timeout. The template cache never expires by default.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HANDLEBARS_SUPPORT_ENABLED
+<strong>org.trimou.engine.config.handlebarsSupportEnabled</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handlebars support is enabled by default. Right now only handlebars-like helpers are supported.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REUSE_LINE_SEPARATOR_SEGMENTS
+<strong>org.trimou.engine.config.reuseLineSeparatorSegments</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set to <code>true</code> the line separators will be reused within template to conserve memory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ITERATION_METADATA_ALIAS
+<strong>org.trimou.engine.config.iterationMetadataAlias</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The alias for iteration metadata object available inside an iteration block.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RESOLVER_HINTS_ENABLED
+<strong>org.trimou.engine.config.resolverHintsEnabled</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set to <code>true</code> the evaluation of simple variables, e.g. <code>.</code> or <code>foo</code>, is optimized.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NESTED_TEMPLATE_SUPPORT_ENABLED
+<strong>org.trimou.engine.config.nestedTemplateSupportEnabled</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set to <code>true</code> the nested templates are supported. Otherwise any start tag of a nested template definition is considered to be a regular variable tag.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="i18n">3.4. Basic i18n support</h3>
+<div class="paragraph">
+<p>Trimou has a basic i18n support. There are some optional components provided to handle i18n requirements. All these components rely  on <code>org.trimou.engine.locale.LocaleSupport</code> implementation to get the current <code>Locale</code>, see also <a href="#locale_support">LocaleSupport</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. i18n components</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Class</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Resolver</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.engine.resolver.i18n.NumberFormatResolver</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Basic number formatting.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Resolver</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.engine.resolver.i18n.DateTimeFormatResolver</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Basic date and time formatting.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Resolver</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.engine.resolver.i18n.ResourceBundleResolver</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resolves localized messages. Unlike <code>ResourceBundleLambda</code> this resolver is not limited to String-based values. However keep in mind that resource bundle keys may not contain dots.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Helper</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.i18n.DateTimeFormatHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is an alternative to <code>DateTimeFormatResolver</code>. The main advantage lies in the ability to specify custom pattern per tag: <code>{{formatTime now pattern="DD-MM-yyyy HH:mm"}}</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Helper</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.handlebars.i18n.ResourceBundleHelper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The most flexible way of rendering localized messages. Supports message parameters and multiple resource bundles.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Lambda</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.trimou.lambda.i18n.ResourceBundleLambda</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Renders localized messages. Unlike <code>ResourceBundleResolver</code> this lambda supports resource bundle keys that contain dots.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_datetimeformatresolver_example">3.4.1. DateTimeFormatResolver example</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder
+                           .newBuilder()
+                           .setProperty(DateTimeFormatResolver.CUSTOM_PATTERN_KEY, "DD-MM-YYYY HH:mm") <b class="conum">(1)</b>
+                           .addResolver(new DateTimeFormatResolver()) <b class="conum">(2)</b>
+                           .build();
+Mustache mustache = engine.getMustache("foo");
+String output = mustache.render(ImmutableMap.&lt;String, Object&gt; of("now", new Date()));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>DateTimeFormatResolver also supports custom formatting pattern</p>
+</li>
+<li>
+<p>Manually add resolver</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">foo.html</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">Now: {{now.formatCustom}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>results in something similar:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Bash" data-lang="Bash">Now: 03-05-2013 22:05</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="debug">3.5. Debugging</h3>
+<div class="paragraph">
+<p>If you encounter a problem during template processing/rendering, try to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>configure <a href="http://www.slf4j.org/">Simple Logging Facade for Java (SLF4J)</a> - increase the log level for <code>org.trimou</code> loggers</p>
+</li>
+<li>
+<p>enable <a href="#configuration">debug mode</a> - this disables the template cache and provides some more logging during template rendering (otherwise disabled due to performance)</p>
+</li>
+<li>
+<p>implement your own <a href="#missingvaluehandler">MissingValueHandler</a> - to handle variable miss during interpolation of a variable tag</p>
+</li>
+<li>
+<p>use <a href="#helpers">LogHelper</a> - this might useful for production environments</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how_to_extend">4. How to extend</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Basically, all the extension points are focused on <code>MustacheEngine</code> configuration. Some components may be automatically added using the <code>org.trimou.engine.config.ConfigurationExtension</code> and JDK <a href="http://docs.oracle.com/javase/6/docs/api/java/util/ServiceLoader.html">service-provider loading facility</a>. Others may be added manually via <code>MustacheEngineBuilder</code> methods. See existing extensions to get acquainted with the basic principles.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Automatic <code>org.trimou.engine.config.ConfigurationExtension</code> processing may be disabled per engine - see also <code>MustacheEngineBuilder#omitServiceLoaderConfigurationExtensions()</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="resolver">4.1. Resolver</h3>
+<div class="paragraph">
+<p>Resolvers define the set of resolvable objects for your templates. The built-in set of resolvers should satisfy most of the basic requirements.</p>
+</div>
+<div class="sect3">
+<h4 id="_custom_resolvers">4.1.1. Custom resolvers</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Implementing/adding a custom resolver may have serious impact on the engine functionality and performance.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>All resolvers have a priority and resolvers with <strong>higher priority</strong> are called <strong>first</strong>. Keep in mind that all resolvers must be thread-safe. There are two ways to extend the basic set of resolvers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>automatically via <code>org.trimou.engine.config.ConfigurationExtension</code>,</p>
+</li>
+<li>
+<p>you can also use <code>MustacheEngineBuilder.addResolver()</code> method.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<a href="#cdi">trimou-extension-cdi</a> extension provides <code>CDIBeanResolver</code> to lookup normal-scoped CDI beans with name. <a href="#servlets">trimou-extension-servlet</a> extension provides <code>HttpServletRequestResolver</code> to get the current Servlet request wrapper.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_enhancedresolver">4.1.2. EnhancedResolver</h4>
+<div class="paragraph">
+<p>An enhanced resolver should be able to create a <code>Hint</code> for a sucessfully resolved context object and name. A hint could be used to skip the resolver chain for a part of the key of a specific tag and improve the interpolation performance.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Hints are enabled by default. See <code>RESOLVER_HINTS_ENABLED</code> in <a href="#configuration">Configuration properties</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="template_locator">4.2. TemplateLocator</h3>
+<div class="paragraph">
+<p>Template locators automatically locate the template contents for the given template identifier. The form of the template identifier is not defined, however in most cases the id will represent a template name, e.g. <code>foo</code> and <code>foo.html</code>, or virtual path like <code>order/orderDetail</code>. The default virtual path separator is <code>/</code> and can be configured via <code>org.trimou.engine.locator.PathTemplateLocator.VIRTUAL_PATH_SEPARATOR_KEY</code>. Template locators may only be added with <code>MustacheEngineBuilder.addTemplateLocator()</code> method.</p>
+</div>
+<div class="paragraph">
+<p>There are three basic built-in implementations. <code>org.trimou.engine.locator.FilesystemTemplateLocator</code> finds templates on the filesystem, within the given root directory (watch out, this wouldn&#8217;t be likely portable across various operating systems). <code>org.trimou.engine.locator.ClassPathTemplateLocator</code> makes use of ClassLoader, either thread context class loader (TCCL) or custom CL set via constructor. <code>org.trimou.engine.locator.MapTemplateLocator</code> is backed by a <code>Map</code>. See javadoc for more configuration info.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Locators with <strong>higher priority</strong> are called <strong>first</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<a href="#servlets">trimou-extension-servlet</a> extension provides <code>org.trimou.servlet.locator.ServletContextTemplateLocator</code> to be used in web apps deployed to a servlet container.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="text_support">4.3. TextSupport</h3>
+<div class="paragraph">
+<p><code>org.trimou.engine.text.TextSupport</code> is used to escape variable text if necessary (see also <a href="#escaping_hml">Escaping HTML</a>). You can set the custom instance with <code>org.trimou.engine.MustacheEngineBuilder.setTextSupport()</code> method. Implement your own logic to extend functionality or improve performance!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locale_support">4.4. LocaleSupport</h3>
+<div class="paragraph">
+<p><code>org.trimou.engine.locale.LocaleSupport</code> allows the engine and its components (e.g. resolvers) to get the current locale via <code>getCurrentLocale()</code>. You can set the custom <code>org.trimou.engine.locale.LocaleSupport</code> instance with <code>org.trimou.engine.MustacheEngineBuilder.setLocaleSupport()</code> method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mustache_listener">4.5. MustacheListener</h3>
+<div class="paragraph">
+<p>Any registered <code>org.trimou.engine.listener.MustacheListener</code> receives notifications about template processing. In particular <code>compilationFinished()</code> method is invoked when a template is compiled, <code>renderingStarted()</code> and <code>renderingFinished()</code> methods are invoked for each template rendering. <code>parsingStarted()</code> is invoked right before a template is processed by the parser. Listeners are invoked in the order of their registration, except for <code>renderingFinished()</code> method which is invoked in reverse order.</p>
+</div>
+<div class="paragraph">
+<p>There are two ways to register a custom listener:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>MustacheEngineBuilder.addMustacheListener()</code> method,</p>
+</li>
+<li>
+<p>automatically via <code>org.trimou.engine.config.ConfigurationExtension</code> (extension listeners are always registered after manually added listeners).</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Code inside a listener may throw an unchecked exception - this aborts further processing of template and no more listeners are invoked afterwards.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="custom_helpers">4.6. Helper</h3>
+<div class="paragraph">
+<p><code>org.trimou.handlebars.Helper</code> API is inspired by Handlebars but it&#8217;s not 100% compatible.
+Mainly, it does not define the "inverse" section, so for example the built-in <code>if</code> helper doesn&#8217;t support <code>else</code> block.
+On the other hand any helper is able to validate the tag definition (see <code>Helper.validate()</code>) and fail fast if there&#8217;s invalid number of arguments etc.</p>
+</div>
+<div class="paragraph">
+<p>A helper may be registered via <code>MustacheEngineBuilder.registerHelper()</code> or <code>MustacheEngineBuilder.registerHelpers()</code> methods.
+Note that each helper must be registered with a unique name.
+If there are more helpers registered with the same name an <code>IllegalArgumentException</code> is thrown during engine build.
+There is a special method <code>MustacheEngineBuilder.registerHelpers(Map&lt;String, Helper&gt;, boolean)</code> which allows to overwrite the existing helper instance (e.g. to define a custom <code>if</code> helper).
+Some <a href="#helpers">built-in helpers</a> are registered automatically.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The number of registered helpers should not affect the engine performance (unlike the number of registered resolvers).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The main advantage of helpers is the ability to consume multiple parameters and optional hash map.
+A parameter or a hash map value may be a literal (see also <a href="#literalSupport">LiteralSupport</a>), a value placeholder (evaluated at runtime, during each execution of a helper) or a list of literals and value placeholders.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{#if foo}}Foo is a value placeholder, is evaluated each time the helper is executed{{/if}}
+
+{{#if true}}true is a literal{{/if}}
+
+{{#each [foo, 1]}}
+    [foo, 1] is a list containing value placeholder and literal
+{{/each}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check out <code>org.trimou.handlebars.Options</code> and the source of built-in helpers to see what helpers can do.</p>
+</div>
+<div class="sect3">
+<h4 id="_simple_helpers">4.6.1. Simple helpers</h4>
+<div class="paragraph">
+<p><code>org.trimou.handlebars.SimpleHelpers</code> utility class and its builder allow to create simple helpers using JDK8 funcional interfaces. It&#8217;s even possible to validate the helper definition and provide configuration keys.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder
+        .newBuilder()
+        .registerHelper("toLowerCase", SimpleHelpers.execute(
+            (o, c) -&gt; {
+                o.append(o.getParameters().get(0).toString().toLowerCase());
+            })
+        ).build();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="missingvaluehandler">4.7. MissingValueHandler</h3>
+<div class="paragraph">
+<p><code>org.trimou.engine.interpolation.MissingValueHandler</code> handles variable miss (no value found) during interpolation of a variable tag. By default <code>org.trimou.engine.interpolation.NoOpMissingValueHandler</code> is used so that a miss does not result in any special operation. However you can set your own handler through the <code>MustacheEngineBuilder.setMissingValueHandler()</code> method. There is also <code>org.trimou.engine.interpolation.ThrowingExceptionMissingValueHandler</code> which throws an exception in case of a miss (actually it replaces deprecated configuration property <code>EngineConfigurationKey#NO_VALUE_INDICATES_PROBLEM</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="keysplitter">4.8. KeySplitter</h3>
+<div class="paragraph">
+<p><code>org.trimou.engine.interpolation.KeySplitter</code> is responsible for splitting a variable key.
+<code>org.trimou.engine.interpolation.DotKeySplitter</code> which follows the dot notation is used by default.
+<code>org.trimou.engine.interpolation.BracketDotKeySplitter</code> enables to use bracket notation and literals in variable keys.
+E.g. <code>{{messages["my.message.key"]}}</code>.
+You can set your own splitter through the <code>MustacheEngineBuilder.setKeySplitter()</code> method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="computingcache">4.9. ComputingCacheFactory</h3>
+<div class="paragraph">
+<p><code>org.trimou.engine.cache.ComputingCache</code> is a simple abstraction for thread-safe computing (lazy loading) cache.
+It&#8217;s used in some internal components (e.g. <code>ReflectionResolver</code>) and may also be used in custom components too. <code>org.trimou.engine.cache.ComputingCacheFactory</code> component is responsible for creating new instances of <code>ComputingCache</code>.
+The default computing cache implementation is backed by <code>java.util.concurrent.ConcurrentHashMap</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="identifiergenerator">4.10. IdentifierGenerator</h3>
+<div class="paragraph">
+<p><code>org.trimou.engine.id.IdentifierGenerator</code> is used to generate identifiers for various components and use-cases (e.g. <code>Mustache</code>, <code>MustacheRenderingEvent</code> and one-off lambda names).
+There are some restrictions on the uniqueness of the generated id - see also the javadoc.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="literalSupport">4.11. LiteralSupport</h3>
+<div class="paragraph">
+<p><code>org.trimou.engine.interpolation.LiteralSupport</code> allows to customize the way the helpers extract literals from params and hash values.
+The default implementation currently supports String (<code>"foo"</code> or <code>'foo'</code>), Integer, Long (<code>10L</code> or <code>10l</code>), Boolean (<code>true</code> or <code>false</code>) literals.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="valueConverter">4.12. ValueConverter</h3>
+<div class="paragraph">
+<p><code>org.trimou.engine.convert.ValueConverter</code> is used to convert an object to a string representation.
+Converters are mostly used in variable tags, e.g. <code>{{foo}}</code>.
+A converter has also a priority - converters with higher priority are called first.
+If no converter is able to convert an object, <code>Object#toString()</code> is used.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="extensions">5. Extensions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="cdi">5.1. CDI</h3>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-extension-cdi&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cdibeanresolver">5.1.1. CDIBeanResolver</h4>
+<div class="paragraph">
+<p>Tries to resolve a CDI bean with the given name (i.e. annotated with <code>@Named</code> or with a <code>@Named</code> stereotype).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rendering_context">5.1.2. Rendering context</h4>
+<div class="paragraph">
+<p>The rendering scope is active during each rendering of a template, i.e. during <code>Mustache.render()</code> invocation - there is exactly one bean instance per rendering which is destroyed after the rendering is finished. This could be useful in SE environments where usually only <code>@ApplicationScoped</code> and <code>@Dependent</code> built-in scopes are available. You can annotate your bean with <code>org.trimou.cdi.context.RenderingScoped</code> to declare the rendering scope.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="servlets">5.2. Servlets</h3>
+<div class="paragraph">
+<p>At the moment only Servlet 3.x API is supported.</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-extension-servlet&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_servletcontexttemplatelocator">5.2.1. ServletContextTemplateLocator</h4>
+<div class="paragraph">
+<p>Locates the template anywhere in the web app. The root path must begin with a <code>/</code> and is interpreted as relative to the current context root, or relative to the <code>/META-INF/resources</code> directory of a JAR file inside the web application&#8217;s <code>/WEB-INF/lib</code> directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngineBuilder
+  .newBuilder()
+  .addTemplateLocator(ServletContextTemplateLocator.builder().setRootPath("/WEB-INF/templates").build())
+  .build();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_httpservletrequestresolver">5.2.2. HttpServletRequestResolver</h4>
+<div class="paragraph">
+<p>Resolves a key of value <strong>request</strong> to <code>HttpServletRequestWrapper</code>. Why the wrapper? Well, we just don&#8217;t think it&#8217;s the right thing to call the request object directly.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_requestlocalesupport">5.2.3. RequestLocaleSupport</h4>
+<div class="paragraph">
+<p>Obtains the current locate from the current servlet request.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prettytime">5.3. PrettyTime</h3>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-extension-prettytime&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_prettytimeresolver">5.3.1. PrettyTimeResolver</h4>
+<div class="paragraph">
+<p>This resolver allows you to use <a href="http://ocpsoft.org/prettytime">PrettyTime</a> date-formatting in your templates.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The PrettyTimeResolver is automatically loaded if you place the extension jar on the classpath.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Simple example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder
+                             .newBuilder()
+                             .build();
+Mustache mustache = engine.compileMustache("prettyTime","{{now.prettyTime}}");
+String output = mustache.render(ImmutableMap.&lt;String, Object&gt; of("now", new Date()));
+// Renders something similar:
+// moments from now</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_prettytimehelper">5.3.2. PrettyTimeHelper</h4>
+<div class="paragraph">
+<p>Developers are encouraged to use this helper instead of <code>PrettyTimeResolver</code> to avoid the negative performance impact during interpolation. However, <code>PrettyTimeResolver</code> is registered automatically through <code>PrettyTimeConfigurationExtension</code>. So don&#8217;t forget to disable the resolver by means of <code>org.trimou.prettytime.resolver.PrettyTimeResolver.ENABLED_KEY</code>, e.g. use <code>org.trimou.prettytime.resolver.PrettyTimeResolver.enabled=false</code> in your properties file.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="minify">5.4. Minify</h3>
+<div class="paragraph">
+<p>Minify extension allows you to minify your HTML and XML templates (or any other type of content if you provide your own <code>org.trimou.minify.Minifier</code> implementation). Trimou integrates small and efficient <a href="http://code.google.com/p/htmlcompressor/">HtmlCompressor</a> library. There are two ways to minify the templates. It&#8217;s possible to register a special listener to minify templates before parsing/compilation or use a special lambda to minify some parts of the template contents.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<code>org.trimou.minify.Minify</code> helper methods are useful to create the default listeners and lambdas (i.e. if you don&#8217;t require some extra configuration).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+From the performance point of view: both listener and lambda decrease the size of the rendered template. However listeners may also improve the rendering performance (template is minified only once - before the compilation). Whereas lambdas will likely make rendering performance worse (part of the template is minified every time the lambda is invoked).
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-extension-minify&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_minifylistener">5.4.1. MinifyListener</h4>
+<div class="listingblock">
+<div class="title">Simple example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder
+                             .newBuilder()
+                             .addMustacheListener(Minify.htmlListener())
+                             .build();
+Mustache mustache = engine.compileMustache("minify_html","&lt;html&gt;&lt;body&gt;     &lt;!-- My comment --&gt;{{foo}}  &lt;/body&gt;&lt;/html&gt;");
+String output = mustache.render(ImmutableMap.&lt;String, Object&gt; of("foo", "FOO"));
+// Renders:
+// &lt;html&gt;&lt;body&gt; FOO &lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+It&#8217;s also possible to customize the underlying <code>com.googlecode.htmlcompressor.compressor.HtmlCompressor</code> instance - see also our <a href="https://github.com/trimou/trimou/blob/master/extensions/minify/src/test/java/org/trimou/minify/MinifyListenerTest.java#L81">MinifyListenerTest</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_minifylambda">5.4.2. MinifyLambda</h4>
+<div class="listingblock">
+<div class="title">Simple example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder
+                             .newBuilder()
+                             .build();
+Mustache mustache = engine.compileMustache("minify_html_lambda","&lt;html&gt;&lt;body&gt;&lt;!-- Remains --&gt;{{#mini}}&lt;!-- Will be removed --&gt;   FOO {{/mini}}&lt;/body&gt;&lt;/html&gt;");
+String output = mustache.render(ImmutableMap.&lt;String, Object&gt; of("mini", Minify.htmlLambda()));
+// Renders:
+// &lt;html&gt;&lt;body&gt;&lt;!-- Remains --&gt; FOO &lt;/body&gt;&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_minifier_interface">5.4.3. Minifier interface</h4>
+<div class="paragraph">
+<p>You can also implement your own minifier and leverage existing infrastructure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngine engine = MustacheEngineBuilder
+                             .newBuilder()
+                             .addMustacheListener(Minify.customListener(new AbstractMinifier() {
+                                @Override
+                                public Reader minify(String mustacheName, Reader mustacheContents) {
+                                    return mustacheName.endsWith("html") ? mySuperMinification(Reader mustacheContents) : mustacheContents;
+                                }
+                             }))).build();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="gson">5.5. Gson</h3>
+<div class="paragraph">
+<p>Gson extension brings some basic support for <a href="http://www.json.org/">JSON format</a> by means of <a href="http://code.google.com/p/google-gson/">google-gson</a> APIs.</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-extension-gson&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gsonvalueconverter">5.5.1. GsonValueConverter</h4>
+<div class="paragraph">
+<p>Converts <code>JsonPrimitive</code> to <code>JsonPrimitive.getAsString()</code> and <code>JsonNull</code> to an empty string.
+This converter is enabled by default and could be disabled by setting <code>org.trimou.gson.converter.GsonValueConverter.enabled</code> configuration property to <code>false</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_jsonelementresolver">5.5.2. JsonElementResolver</h4>
+<div class="paragraph">
+<p><code>org.trimou.gson.resolver.JsonElementResolver</code> makes it easier to work with <code>com.google.gson.JsonElement</code> instances.
+It is automatically loaded if you place the extension jar on the classpath.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>allows to access <code>JsonObject</code> properties via dot notation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>e.g. if foo is an instance of <code>JsonObject</code> then <code>foo.bar</code> is translated to <code>foo.get("bar")</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>JsonArray</code> elements can be accessed via index</p>
+<div class="ulist">
+<ul>
+<li>
+<p>e.g. if foo is an instance of <code>JsonArray</code> then <code>foo.1</code> is translated to <code>foo.get(1)</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>JsonNull</code> and <code>JsonPrimitive</code> might be automatically unwrapped if <code>org.trimou.gson.resolver.JsonElementResolver.unwrapJsonPrimitive</code> configuration property is set to <code>true</code>.
+<code>JsonNull</code> is resolved as a <code>Placeholder#NULL</code> and <code>JsonPrimitive</code> is unwrapped according to its type.
+E.g. <code>foo.bar</code> in <code>JsonObject</code> example is translated to <code>foo.get("bar").getAsNumber()</code> if bar is an instance of a <code>java.lang.Number</code>.
+Since 2.1 this automatic unwrapping is disabled by default - see <code>JsonElementResolver</code> javadoc.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Unwrapping only works if <code>JsonElementResolver</code> is involved! So for example if you iterate over <code>["Jim", true, 5]</code> (and <code>GsonValueConverter</code> is not enabled), a special keyword <code>unwrapThis</code> must be used so that the primitives are unwrapped:
+<code>{{#jsonArray}}{{unwrapThis}}{{/jsonArray}}</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_example_code">Example code</h5>
+<div class="listingblock">
+<div class="title">Example data</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+    "firstName": "Jan",
+    "lastName": "Novy",
+    "age": 30,
+    "address": {
+        "street": "Nova",
+        "city": "Prague",
+        "state": "CZ",
+        "postalCode": "11000"
+    },
+    "phoneNumbers": [
+        {
+            "type": "home",
+            "number": "`42002012345"
+        },
+        {
+            "type": "mobile",
+            "number": "`420728000111"
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example template</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">Last name: {{lastName}}
+Street: {{address.street}}
+Phone numbers: {{#phoneNumbers}}{{number}}{{#iterHasNext}}, {{/iterHasNext}}{{/phoneNumbers}}
+Type of the first phone number: {{phoneNumbers.0.type}}
+Type of the second phone number: {{phoneNumbers.1.type}}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Java code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">// Load the test data
+JsonElement jsonElement = new JsonParser().parse(...);
+// JsonElementResolver is loaded automatically
+MustacheEngine engine = MustacheEngineBuilder
+                             .newBuilder()
+                             .build();
+Mustache mustache = engine.getMustache("json_test.mustache");
+String output = mustache.render(jsonElement);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Expected output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Bash" data-lang="Bash">Last name: Novy
+Street: Nova
+Phone numbers: `42002012345, `420728000111
+Type of the first phone number: home
+Type of the second phone number: mobile</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="json-p">5.6. JSON Processing (JSR 353)</h3>
+<div class="paragraph">
+<p>This extension simplifies the usage of Object Model API along with Trimou templates.</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-extension-json-p&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_jsonprocessingvalueconverter">5.6.1. JsonProcessingValueConverter</h4>
+<div class="paragraph">
+<p>Converts <code>JsonString</code> to <code>JsonString.getString()</code> and <code>JsonValue.NULL</code> to an empty string.
+This converter is enabled by default and could be disabled by setting <code>org.trimou.jsonp.converter.JsonProcessingValueConverter.enabled</code> configuration property to <code>false</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_jsonvalueresolver">5.6.2. JsonValueResolver</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Since 2.1 this resolver is disabled by default.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>org.trimou.jsonp.resolver.JsonValueResolver</code> makes it easier to work with <code>javax.json.JsonValue</code> instances.
+It is automatically loaded if you place the extension jar on the classpath.
+Since <code>JsonObject</code> implements <code>Map</code> and <code>JsonArray</code> implements <code>List</code> this resolver is only useful if automatic unwrapping is required.
+Automatic unwrapping means resolving <code>JsonString#getString()</code> for a <code>JsonString</code>, <code>JsonNumber#bigDecimalValue()</code> for a <code>JsonNumber</code>, <code>Boolean#TRUE</code> for a <code>JsonValue#TRUE</code>, <code>Boolean#FALSE</code> for <code>JsonValue#FALSE</code> and <code>Placeholder#NULL</code> for a <code>JsonValue#NULL</code>.
+However, unwrapping only works if <code>JsonValueResolver</code> is involved!
+So for example if you iterate over <code>["Jim", true, 5]</code>, a special keyword <code>unwrapThis</code> must be used so that the primitives are unwrapped:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{#jsonArray}}{{unwrapThis}}{{/jsonArray}}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+This resolver should always have higher priority than <code>MapResolver</code> to be able to process instances of <code>JsonObject</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_example_code_2">Example code</h5>
+<div class="listingblock">
+<div class="title">Example data</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json" data-lang="json">{
+    "firstName": "Jan",
+    "lastName": "Novy",
+    "age": 30,
+    "address": {
+        "street": "Nova",
+        "city": "Prague",
+        "state": "CZ",
+        "postalCode": "11000"
+    },
+    "phoneNumbers": [
+        {
+            "type": "home",
+            "number": "`42002012345"
+        },
+        {
+            "type": "mobile",
+            "number": "`420728000111"
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example template</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">Last name: {{lastName}}
+Street: {{address.street}}
+Phone numbers: {{#phoneNumbers}}{{number}}{{#iterHasNext}}, {{/iterHasNext}}{{/phoneNumbers}}
+Type of the first phone number: {{phoneNumbers.0.type}}
+Type of the second phone number: {{phoneNumbers.1.type}}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Java code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">// Load the test data
+JsonStructure jsonStructure = Json.createReader(...).read();
+// JsonValueResolver is loaded automatically
+MustacheEngine engine = MustacheEngineBuilder
+                             .newBuilder()
+                             .build();
+Mustache mustache = engine.getMustache("json_test.mustache");
+String output = mustache.render(jsonElement);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Expected output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Bash" data-lang="Bash">Last name: Novy
+Street: Nova
+Phone numbers: `42002012345, `420728000111
+Type of the first phone number: home
+Type of the second phone number: mobile</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="spring_mvc">5.7. Spring MVC integration</h3>
+<div class="paragraph">
+<p>This extension provides a basic <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html">Spring MVC</a> integration.</p>
+</div>
+<div class="sect3">
+<h4 id="_spring_3_x">5.7.1. Spring 3.x</h4>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-extension-spring-mvc&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_spring_4_x">5.7.2. Spring 4.x</h4>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-extension-spring4-mvc&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>TrimoView</code> implements the <code>View</code> interface from the Spring MVC Framework and acts as the presentation layer. The
+<code>TrimouViewResolver</code> implements the <code>ViewResolver</code> interface and is responsible to load the views from a desired
+location. Per default the <code>SpringResourceTemplateLocator</code> is used, that catches any templates prefixed with
+<code>classpath:/templates/</code> and the suffix <code>.trimou</code>.
+In order to use this extension it is your job to provide a recent version of <code>spring-webmvc</code> as we do not provide any.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The newly provided <code>SpringResourceTemplateLocator</code> does not respect the option <code>TEMPLATE_CACHE_EXPIRATION_TIMEOUT</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_i18n_support">i18n Support</h5>
+<div class="paragraph">
+<p>In order to use Spring&#8217;s <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/MessageSource.html">MessageSource</a>
+interface to localize message codes you can add the <code>SpringMessageSourceHelper`during `MustacheEngine</code> initialization.</p>
+</div>
+<div class="listingblock">
+<div class="title">Register <code>SpringMessageSourceHelper</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">MustacheEngineBuilder.newBuilder()
+    .setLocaleSupport(...)
+    .registerHelper("msg", new SpringMessageSourceHelper(messageSource))
+    .build();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This helper support two options <code>locale</code> and <code>defaultMessage</code>. If the <code>locale</code> option is not given, the locale will be
+ read by the configured locale support of the engine.</p>
+</div>
+<div class="listingblock">
+<div class="title">messages.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties" data-lang="properties">label.greeting=Hello {0}!</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Template</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">{{msg 'label.greeting' 'world' locale='en'}}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">Hello world!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="listingblock">
+<div class="title">Template</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">{{msg 'label.missing' defaultMessage='My default message'}}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">My default message</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="spring-boot">5.8. Spring Boot Starter</h3>
+<div class="paragraph">
+<p>To make the Spring integration even more comfortable, we provide a <a href="http://docs.spring.io/spring-boot/docs/1.5.1.RELEASE/reference/htmlsingle/#using-boot-starter">Spring Boot</a>
+starter artifact. This is the only artifact you have to include to use Trimou as template engine within your Spring MVC
+ setup.</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+    &lt;artifactId&gt;trimou-extension-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;${project.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To customize the auto-configured <code>MustacheEngine</code> you can create a <code>trimou.properties</code> file in your classpath. In
+addition to this default behaviour it&#8217;s also possible to set these settings via your <code>application.properties</code> file. Any
+configuration must be prefixed with <code>trimou</code> (eg. org.trimou.engine.config.startDelimiter gets trimou.start-delimiter).
+If you need to customize the <code>MustacheEngine</code> even more, you can simply implement the interface <code>TrimouConfigurer</code>
+and annotate this class as normal
+<a href="http://docs.spring.io/spring-boot/docs/1.5.1.RELEASE/reference/htmlsingle/#using-boot-configuration-classes">Spring configuration</a>
+class.</p>
+</div>
+<div class="listingblock">
+<div class="title">Register global data</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">@Configuration
+class TrimouConfigurationDecorator implements TrimouConfigurer {
+
+    private final MessageSource messageSource;
+
+    public TrimouConfigurationDecorator(final MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
+    @Override
+    public void configure(final MustacheEngineBuilder engineBuilder) {
+        engineBuilder
+                .addGlobalData("footer", "(c) Trimou Team")
+                .registerHelper("msg", new SpringMessageSourceHelper(messageSource));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dropwizard">5.9. Dropwizard</h3>
+<div class="paragraph">
+<p>This extension provides a basic <a href="https://dropwizard.github.io/dropwizard/">Dropwizard</a> integration.</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-extension-dropwizard&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_trimouviewrenderer">5.9.1. TrimouViewRenderer</h4>
+<div class="paragraph">
+<p><code>org.trimou.dropwizard.views.TrimouViewRenderer</code> is a <code>io.dropwizard.views.ViewRenderer</code> implementation backed by Trimou. There&#8217;s a simple builder for convenience: <code>org.trimou.dropwizard.views.TrimouViewRenderer.Builder</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="el">5.10. EL 3.0</h3>
+<div class="paragraph">
+<p>This extension provides a basic <a href="https://uel.java.net/">EL 3.0</a> integration.</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven dependency</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.trimou&lt;/groupId&gt;
+  &lt;artifactId&gt;trimou-extension-el&lt;/artifactId&gt;
+  &lt;version&gt;${version.trimou}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_elifhelper">5.10.1. ELIfHelper</h4>
+<div class="paragraph">
+<p><code>org.trimou.el.ELIfHelper</code> extends the built-in <code>IfHelper</code> in the sense that a <code>String</code> param is evaluated as EL expression:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{#if "item.price gt 200"}}
+  {{item.name}}
+{{/if}}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The <code>ELIfHelper</code> is automatically registered if you place the extension on the class path.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_elhelper">5.10.2. ELHelper</h4>
+<div class="paragraph">
+<p><code>org.trimou.el.ELHelper</code> evaluates the <code>Object#toString()</code> of the first parameter.
+If the helper represents a section and the value is not <code>null</code> the value is pushed on the context stack and the section is rendered.
+If the helper represents a variable and the value is <code>null</code>, the current <code>MissingValueHandler</code> is used.
+If the helper represents a variable and the final value is not <code>null</code> the the value&#8217;s <code>Object#toString()</code> is rendered.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Handlebars" data-lang="Handlebars">{{el 'item.active ? "active" : "inactive"'}}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The <code>ELHelper</code> is automatically registered if you place the extension on the class path.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-03-13 10:06:55 CET
+</div>
+</div>
+<link rel="stylesheet" href="/doc/highlightjs/styles/agate.min.css">
+<script src="/doc/highlightjs/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-41837896-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</body>
+</html>
